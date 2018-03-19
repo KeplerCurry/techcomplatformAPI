@@ -20,7 +20,7 @@ class JsonController extends Controller {
     	{
     		$user_data['upassword'] = md5( I('request.password'));
     		$user_data['uid'] = date("YmdHis",time());
-    		$user_data['ualiase'] = "tch".date("Tis" , time());
+    		$user_data['ualiase'] = "tch_".date("YmdHis" , time());
     		$user_data['ispassed'] = 0;
     		$user_data['ulevel'] = 1;
     		$user_data['uexp'] = 0;
