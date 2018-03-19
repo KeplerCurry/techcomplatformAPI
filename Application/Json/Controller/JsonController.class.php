@@ -42,4 +42,9 @@ class JsonController extends Controller {
     		$this->ajaxReturn($data);
     	}
     }
+    //测试获取IP
+    public function getIPTest(){
+        $data['ip'] = I('server.REMOTE_ADDR');
+        dump($data);
+    }
 }
