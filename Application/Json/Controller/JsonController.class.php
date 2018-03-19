@@ -2,9 +2,6 @@
 namespace Json\Controller;
 use Think\Controller;
 class JsonController extends Controller {
-    public function index(){
-        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px } a,a:hover{color:blue;}</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用Json接口 <b>ThinkPHP</b>！</p><br/>版本 V{$Think.version}</div><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_55e75dfae343f5a1"></thinkad><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
-    }
 
     public function test(){
     	$user = M("user");
@@ -28,13 +25,13 @@ class JsonController extends Controller {
     		if( $user->add($user_data) )
     		{
     			$data['success'] = 1;
-    			$this->ajaxReturn($data);
+                $this->ajaxReturn($data);
     		}
     		else
     		{
     			$data['success'] = 0;
     			$this->ajaxReturn($data);
-    		}
+            }
     	}
     	else
     	{
@@ -86,6 +83,7 @@ class JsonController extends Controller {
                 if( $loginannal ->add($data_save) )
                 {
                     $data_return['success'] = 1;
+                    //echo json_encode($data_return,JSON_UNESCAPED_UNICODE);
                     $this->ajaxReturn($data_return);
                 }
             }
@@ -96,5 +94,31 @@ class JsonController extends Controller {
             $data['success'] = 0;
             $this->ajaxReturn($data);
         }
+    }
+    //app热门内容
+    public function hotData(){
+        $techdetail = M('techdetail');
+        $page = I('request.page');
+        $data = $techdetail -> page($page,10) -> select();
+        $this->ajaxReturn($data);
+    }
+
+    public function addTestData(){
+        $i = 2;
+        $techdetail = M("techdetail");
+        while( $i < 32 )
+        {
+            $data['tdid'] = "td-".$i;
+            $data['tid'] = "t-124";
+            $data['tuid'] = "20180319124601";
+            $data['tdtitle'] = "code".$i;
+            $data['tdcontent'] = "abcdedghijklnopwqrsturvjahjshkjqwhekjqwhuiyfiasgfiewrtfgiewtrf";
+            $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+            $data['isfree'] = "1";
+            $data['state'] = "0";
+            $techdetail -> add($data);
+            $i++;
+        }
+        
     }
 }
