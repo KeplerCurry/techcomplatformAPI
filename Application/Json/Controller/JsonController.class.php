@@ -44,7 +44,7 @@ class JsonController extends Controller {
     }
     //测试获取IP
     public function getIPTest(){
-        $data['ip'] = I('server.REMOTE_ADDR');
+        $data['ip'] = get_client_ip();
         dump($data);
     }
 }
