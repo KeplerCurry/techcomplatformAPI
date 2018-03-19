@@ -1,0 +1,308 @@
+[ 2018-03-19T12:37:02+08:00 ] ::1 /techcomplatform/Json/index/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001183s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001175s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001308s ]
+ERR: 非法操作:test
+
+[ 2018-03-19T12:37:26+08:00 ] ::1 /techcomplatform/Json/json/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000535s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000661s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `tec_user`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001282s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001431s ]
+
+[ 2018-03-19T12:37:34+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000406s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000729s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000872s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 21 行.
+
+[ 2018-03-19T12:38:04+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000730s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 21 行.
+
+[ 2018-03-19T12:38:06+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000567s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000688s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000810s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 21 行.
+
+[ 2018-03-19T12:38:22+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0031s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 21 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123822','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123822','0','1','0','0')
+
+[ 2018-03-19T12:39:35+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000697s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000807s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 22 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123935','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123935','0','1','0','0')
+
+[ 2018-03-19T12:39:46+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000561s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000661s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123946','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123946','0','1','0','0')
+
+[ 2018-03-19T12:39:57+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000746s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123957','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319123957','0','1','0','0')
+
+[ 2018-03-19T12:41:08+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000579s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000738s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124108','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124108','0','1','0','0')
+
+[ 2018-03-19T12:41:10+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123456789
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000686s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124110','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124110','0','1','0','0')
+
+[ 2018-03-19T12:42:01+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000441s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000635s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124201','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124201','0','1','0','0')
+
+[ 2018-03-19T12:42:03+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000576s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000680s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124203','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124203','0','1','0','0')
+
+[ 2018-03-19T12:42:04+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000550s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000650s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: telephone C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 18 行.
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = null LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: password C:\wamp64\www\techcomplatform\Application\Json\Controller\JsonController.class.php 第 23 行.
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124204','0','1','0','0')
+ERR: 1048:Column 'utelephone' cannot be null
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES (NULL,'d41d8cd98f00b204e9800998ecf8427e','20180319124204','0','1','0','0')
+
+[ 2018-03-19T12:42:33+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15411111111/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000697s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000818s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15411111111' LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000802s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000901s ]
+
+[ 2018-03-19T12:43:28+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15412345678/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000768s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000896s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15412345678' LIMIT 1   [ RunTime:0.0002s ]
+ERR: 1364:Field 'ualiase' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15412345678','202cb962ac59075b964b07152d234b70','20180319124328','0','1','0','0')
+ERR: 1364:Field 'ualiase' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15412345678','202cb962ac59075b964b07152d234b70','20180319124328','0','1','0','0')
+
+[ 2018-03-19T12:45:14+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15412345678/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000718s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000854s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15412345678' LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2018-03-19T12:45:19+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15412345678/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000412s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000704s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15412345678' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ualiase`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15412345678','202cb962ac59075b964b07152d234b70','20180319124519','tchCST4519','0','1','0','0') [ RunTime:0.0025s ]
+
+[ 2018-03-19T12:45:44+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15412345678/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000408s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000569s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000669s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15412345678' LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000809s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000907s ]
+
+[ 2018-03-19T12:46:01+08:00 ] ::1 /techcomplatform/Json/json/doRegForTelephone/telephone/15412345678/password/123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000944s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001385s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15412345678' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ualiase`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15412345678','202cb962ac59075b964b07152d234b70','20180319124601','tchCST4601','0','1','0','0') [ RunTime:0.0023s ]
+
+[ 2018-03-19T13:40:14+08:00 ] 127.0.0.1 /techcomplatform/Json/json/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000465s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000779s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000879s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001013s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001355s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001469s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000878s ]
+
+[ 2018-03-19T14:03:22+08:00 ] 127.0.0.1 /techcomplatform/Json/json/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000751s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000476s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000579s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000546s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000663s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000765s ]
+
