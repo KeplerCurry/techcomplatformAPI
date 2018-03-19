@@ -15,10 +15,10 @@ class JsonController extends Controller {
     //手机号注册
     public function doRegForTelephone(){
     	$user  = M("user");
-    	$user_data['utelephone'] = $_POST['telephone'];
+    	$user_data['utelephone'] = I('request.telephone');
     	if( !$user->where($user_data)->find() )
     	{
-    		$user_data['upassword'] = md5( $_POST['password'] );
+    		$user_data['upassword'] = md5( I('request.password'));
     		$user_data['uid'] = date("YmdHis",time());
     		$user_data['ualiase'] = "tch".date("Tis" , time());
     		$user_data['ispassed'] = 0;

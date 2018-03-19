@@ -306,3 +306,25 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000663s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000765s ]
 
+[ 2018-03-19T15:21:10+08:00 ] ::1 /techcomplatformAPI/Json/json/doRegForTelephone?telephone=15204198743&password=123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000489s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15204198743' LIMIT 1   [ RunTime:0.0004s ]
+SQL: INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ualiase`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15204198743','202cb962ac59075b964b07152d234b70','20180319152110','tchCST2110','0','1','0','0') [ RunTime:0.0018s ]
+
+[ 2018-03-19T15:58:23+08:00 ] ::1 /techcomplatformAPI/Json/json/doRegForTelephone?telephone=15204198743&password=123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000663s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000767s ]
+SQL: SHOW COLUMNS FROM `tec_user` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `tec_user` WHERE `utelephone` = '15204198743' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `tec_user` (`utelephone`,`upassword`,`uid`,`ualiase`,`ispassed`,`ulevel`,`uexp`,`utype`) VALUES ('15204198743','202cb962ac59075b964b07152d234b70','20180319155823','tchCST5823','0','1','0','0') [ RunTime:0.0022s ]
+
