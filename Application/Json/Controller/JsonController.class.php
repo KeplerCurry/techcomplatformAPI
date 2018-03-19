@@ -83,7 +83,7 @@ class JsonController extends Controller {
             {
                 $loginannal = M('loginannal');
                 $data_save['uid'] = $id['uid'];
-                if( $loginannal ->save($data_save) )
+                if( $loginannal ->add($data_save) )
                 {
                     $this->ajaxReturn($data_return);
                 }
