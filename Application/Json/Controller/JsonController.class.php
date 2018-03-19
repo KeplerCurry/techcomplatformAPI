@@ -44,7 +44,56 @@ class JsonController extends Controller {
     }
     //测试获取IP
     public function getIPTest(){
-        $data['ip'] = get_client_ip();
-        dump($data);
+        $ip = get_client_ip();
+        dump($ip);
+    }
+
+    //用户登录
+    public function doLogin(){
+        $user = M('user');
+        $login_data['utelephone'] = I('request.telephone');
+        $login_data['upassword'] = md5( I('request.password'));
+        if( $data = $user->where($login_data)->find() )
+        {
+            $id['uid'] = $data['uid'];
+            $data_return['uid'] = $data['uid'];
+            $data_return['ualiase'] = $data['ualiase'];
+            $data_return['ispassed'] = $data['ispassed'];
+            $data_return['ulevel'] = $data['ulevel'];
+            $data_return['uexp'] = $data['uexp'];
+            if( NULL != $data['ulogintime'])
+            {
+                $data_return['ulogintime'] = $data['ulogintime'];
+            }
+            else
+            {
+                $data_return['ulogintime'] = "0";
+            }
+            if( NULL != $data['uloginip'])
+            {
+                $data_return['uloginip'] = $data['uloginip'];
+            }
+            else
+            {
+                $data_return['uloginip'] = "0";
+            }
+            $data_save['ulogintime'] = date("Y:m:d H:m:s" , time());
+            $data_save['uloginip'] = get_client_ip();
+            if( $user -> where($id) ->save($data_save) )
+            {
+                $loginannal = M('loginannal');
+                $data_save['uid'] = $id['uid'];
+                if( $loginannal ->save($data_save) )
+                {
+                    $this->ajaxReturn($data_return);
+                }
+            }
+            
+        }
+        else
+        {
+            $data['success'] = 0;
+            $this->ajaxReturn($data);
+        }
     }
 }
