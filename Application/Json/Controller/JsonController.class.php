@@ -97,20 +97,20 @@ class JsonController extends Controller {
     }
     //app热门内容
     public function hotData(){
-        $techdetail = M('techdetail');
         $page = I('request.page');
-        $data = $techdetail -> page($page,10) -> select();
+        $techdetail = M('techdetail as a');
+        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') ->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime')->page($page,10)->select();
         $this->ajaxReturn($data);
     }
 
     public function addTestData(){
-        $i = 2;
+        $i = 0;
         $techdetail = M("techdetail");
-        while( $i < 32 )
+        while( $i < 30 )
         {
             $data['tdid'] = "td-".$i;
             $data['tid'] = "t-124";
-            $data['tuid'] = "20180319124601";
+            $data['tuid'] = "20180319163431";
             $data['tdtitle'] = "code".$i;
             $data['tdcontent'] = "abcdedghijklnopwqrsturvjahjshkjqwhekjqwhuiyfiasgfiewrtfgiewtrf";
             $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
