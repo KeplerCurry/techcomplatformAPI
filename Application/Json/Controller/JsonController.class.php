@@ -119,6 +119,46 @@ class JsonController extends Controller {
             $techdetail -> add($data);
             $i++;
         }
-        
+    }
+
+    //判断技术贴能否加载(付费)，若不能，弹出对话框判断是否购买
+    public function doDecide(){
+
+        /*
+        **  tdid uid 
+        */
+
+        $record = M('record');
+        $record_find['rexpendid'] = I('request.uid');
+        $record_find['rbid'] = I('request.tdid');
+        if( $record -> where($record_find) -> find() )
+        {
+            $data['success'] = 1;//已付费
+            $this->ajaxReturn($data);
+        }
+        else
+        {
+            //未付费
+            $data['success'] = 0;
+            $this->ajaxReturn($data);
+        }
+    }
+
+    //加载技术贴内容
+    public function load_detail_state_0(){
+        $tdid = I('request.tdid');
+        $techdetail = M('techdetail as a');
+        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
+        $this->ajaxReturn($data);
+    }
+
+    //加载技术贴评论内容
+    public function load_detail_state_0_commentdata(){
+
+    }
+
+    //加载提问帖内容
+    public function load_detail_state_1(){
+
     }
 }
