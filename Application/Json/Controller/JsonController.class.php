@@ -161,6 +161,49 @@ class JsonController extends Controller {
 
     }
 
+    //首次评论技术贴
+    public function send_detail_state_0_firstcomment(){
+        $data['tdid'] = I('request.tdid');
+        $data['reviewer'] = I('request.reviewer');
+        $data['content'] = I('request.content');
+        $data['chit'] = 0;
+        $data['cid'] = "c-".date("YmdHms" , time());
+        $data['ctime'] = date("Y:m:d H:m:s" ,time());
+        $comment = M('comment');
+        if( $comment -> add($data) )
+        {
+            $success['success'] = 1
+            $success['time'] = $data['ctime'];
+            $success['cid'] =  $data['cid'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //回复首次评论
+    public function send_detail_state_0_commentagain(){
+        $data['cid'] = I('request.cid');
+        $data['healer'] = I('request.healer');
+        $data['content'] = I('request.content');
+        $data['catime'] = date("Y:m:d H:m:s" ,time());
+        $commentagain = M('commentagain');
+        if( $commentagain -> add($data) )
+        {
+            $success['success'] = 1;
+            $success['time'] = $data['catime'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
     //加载对首次评论的回复
     public function load_detail_state_0_commentagaindata(){
         $cid = I('request.cid');
