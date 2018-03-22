@@ -172,7 +172,7 @@ class JsonController extends Controller {
         $comment = M('comment');
         if( $comment -> add($data) )
         {
-            $success['success'] = 1
+            $success['success'] = 1;
             $success['time'] = $data['ctime'];
             $success['cid'] =  $data['cid'];
             $this->ajaxReturn($success);
