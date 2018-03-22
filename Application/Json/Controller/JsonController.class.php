@@ -152,9 +152,21 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
-    //加载技术贴评论内容
-    public function load_detail_state_0_commentdata(){
+    //加载技术贴首次评论内容
+    public function load_detail_state_0_firstcommentdata(){
+        $tdid = I('request.tdid');
+        $comment = M('comment as a');
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,a.chit')->select();
+        $this->ajaxReturn($data);
 
+    }
+
+    //加载对首次评论的回复
+    public function load_detail_state_0_commentagaindata(){
+        $cid = I('request.cid');
+        $commentagain = M('commentagain as a');
+        $data = $commentagain -> join('tec_user as b on b.uid = a.healer') -> where("a.cid = '$cid'") -> field('b.ualiase,a.cid,a.content,a.catime') -> select();
+        $this->ajaxReturn($data);
     }
 
     //加载提问帖内容
