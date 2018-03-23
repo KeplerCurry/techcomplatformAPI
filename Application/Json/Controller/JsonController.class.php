@@ -226,9 +226,8 @@ class JsonController extends Controller {
     //加载提问帖回答数据
      public function load_detail_state_1_firstAnswerdata(){
         $tdid = I('request.tdid');
-        $page = I('request.page');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->page($page,7)->select();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
         $this->ajaxReturn($data);
     }
 }
