@@ -212,8 +212,22 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+
     //加载提问帖内容
     public function load_detail_state_1(){
+        $tdid = I('request.tdid');
+        $techdetail = M('techdetail as a');
+        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
+        $comment = M('comment');
+        $data['commentcount'] = $comment -> where("tdid = '$tdid'") -> count();
+        $this->ajaxReturn($data);
+    }
 
+    //加载提问帖回答数据
+     public function load_detail_state_1_firstAnswerdata(){
+        $tdid = I('request.tdid');
+        $comment = M('comment as a');
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
+        $this->ajaxReturn($data);
     }
 }
