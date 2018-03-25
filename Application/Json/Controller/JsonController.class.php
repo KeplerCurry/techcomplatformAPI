@@ -294,8 +294,8 @@ class JsonController extends Controller {
     //查看评论回答列表
     public function load_detail_state_1_commentAnswer(){
         $select['cid'] = I('request.cid');
-        $commentagain = M('commentagain');
-        $data = $commentagain -> where($select) -> select();
+        $commentagain = M('commentagain as a');
+        $data = $commentagain ->join('tec_user as b on b.uid = a.healer')->field('a.catime,a.content,a.cid,b.ualiase') -> where($select) -> select();
         $this->ajaxReturn($data);
     }
 
