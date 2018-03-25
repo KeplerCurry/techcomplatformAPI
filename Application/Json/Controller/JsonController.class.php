@@ -270,4 +270,34 @@ class JsonController extends Controller {
             $this->ajaxReturn($success);
         }   
     }
+
+    //查看详细回答
+    public function load_detail_state_1_answerData(){
+        $cid = I('request.cid');
+        $comment = M('comment as a');
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.cid = '$cid'") -> field('b.ualiase,a.cid,a.content,a.chit,a.ctime')->find();
+        
+        if( null != $data)
+        {
+            $commentagain = M('commentagain');
+            $data['commentcount'] = $commentagain -> where("cid = '$cid'") -> count();
+            $data['success'] = 1;
+            $this->ajaxReturn($data);
+        }
+        else
+        {
+            $data['success'] = 0;
+            $this->ajaxReturn($data);
+        }
+    }
+
+    //查看评论回答列表
+    public function load_detail_state_1_commentAnswer(){
+        $select['cid'] = I('request.cid');
+        $commentagain = M('commentagain');
+        $data = $commentagain -> where($select) -> select();
+        $this->ajaxReturn($data);
+    }
+
+    
 }
