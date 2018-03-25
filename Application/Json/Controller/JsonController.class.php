@@ -262,6 +262,7 @@ class JsonController extends Controller {
         if( $commentagain -> add($data) )
         {
             $success['success'] = 1;
+            $success['catime'] = $data['catime'];
             $this->ajaxReturn($success);
         }
         else
