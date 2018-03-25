@@ -230,4 +230,44 @@ class JsonController extends Controller {
         $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
         $this->ajaxReturn($data);
     }
+
+    //回答提问帖
+    public function send_detail_state_1_firstAnswer(){
+        $comment = M('comment');
+        $data['tdid'] = I('request.tdid');
+        $data['reviewer'] = I('request.reviewer');
+        $data['content'] = I('request.content');
+        $data['cid'] = "c-".date("YmdHms" ,time());
+        $data['ctime'] = date("Y:m:d H:m:s" , time());
+        $data['chit'] = 0;
+        if( $comment -> add($data) )
+        {
+            $success['success'] = 1;
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //评论回答内容
+    public function send_detail_state_1_commentAnswer(){
+        $commentagain = M('commentagain');
+        $data['cid'] = I('request.cid');
+        $data['healer'] = I('request.healer');
+        $data['content'] = I('request.content');
+        $data['catime'] = date("Y:m:d H:m:s" , time());
+        if( $commentagain -> add($data) )
+        {
+            $success['success'] = 1;
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }   
+    }
 }
