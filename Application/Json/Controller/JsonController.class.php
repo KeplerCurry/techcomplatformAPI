@@ -300,5 +300,63 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //获取问题分类列表
+    public function get_techclassify_data(){
+        $techclassify = M('techclassify');
+        $data = $techclassify -> select();
+        $this->ajaxReturn($data);
+    }
+
+    //发布提问内容
+    public function send_ask(){
+        $techdetail = M('techdetail');
+        $data['tuid'] = I('request.tuid');
+        $data['tdtitle'] = I('request.tdtitle');
+        $data['tdcontent'] = I('request.tdcontent');
+        $data['tid'] = I('request.tid');
+        $data['tdid'] = "td-".date("YmdHms" , time());
+        $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+        $data['state'] = 1;
+        if( $techdetail -> add($data) )
+        {
+            $success['success'] = 1;
+            $success['tdid'] = $data['tdid'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //发布技术贴
+    public function send_technology_detail(){
+        $techdetail = M('techdetail');
+        $data['tuid'] = I('request.tuid');
+        $data['tdtitle'] = I('request.tdtitle');
+        $data['tdcontent'] = I('request.tdcontent');
+        $data['tid'] = I('request.tid');
+        $data['tdid'] = "td-".date("YmdHms" , time());
+        $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+        $data['state'] = 1;
+        $data['isfree'] = I('request.isfree');
+        if( 0 == $data['isfree'])
+        {
+            $data['price'] = I('request.price');
+        }
+        if( $techdetail -> add($data) )
+        {
+            $success['success'] = 1;
+            $success['tdid'] = $data['tdid'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
     
 }
