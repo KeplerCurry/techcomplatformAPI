@@ -358,5 +358,26 @@ class JsonController extends Controller {
         }
     }
 
+    //申请个人专栏
+    public function apply_for_tech_person_zone(){
+        $userapplyfor = M('userapplyfor');
+        $data['uid'] = I('request.uid');
+        $data['tpzname'] = I('request.tpzname');
+        $data['tid'] = I('request.tid');
+        $data['uafid'] = date("YmdHms" , time());
+        $data['createtime'] = date("Y:m:d H:m:s" , time());
+        $data['state'] = 0;
+        if( $userapplyfor -> add($data))
+        {
+            $success['success'] = 1;
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
     
 }
