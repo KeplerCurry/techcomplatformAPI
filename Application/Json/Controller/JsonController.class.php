@@ -424,7 +424,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_userinfo(){
         $techpersonzone = M('techpersonzone as a');
         $tpzid = I('request.tpzid');
-        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> where("a.tpzid ='$tpzid'") -> find();
+        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> where("a.tpzid ='$tpzid'") -> field('c.tname,b.ualiase,a.tpzid,a.tpzname') -> find();
         //加关注 未实现
         $tpzdetail = M('tpzdetail');
         $data['listcount'] = $tpzdetail -> where("tpzid = '$tpzid'") -> count();
