@@ -431,5 +431,13 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //查看专栏详细文章
+    public function load_tech_person_zone_detail_data(){
+        $tpzdetail = M('tpzdetail as a');
+        $tpzdid = I('request.tpzdid');
+        $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> join('tec_user as c on c.uid = b.uid') -> where("a.tpzdid = '$tpzdid'") -> field('a.tpzdtitle,a.tpzdcontent,a.tpzdfirsttime,b.tpzname,c.ualiase') -> find();
+        $this->ajaxReturn($data);
+    }
+
     
 }
