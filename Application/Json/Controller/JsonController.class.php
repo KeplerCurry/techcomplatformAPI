@@ -408,7 +408,7 @@ class JsonController extends Controller {
     //获取专栏列表
     public function load_tech_person_zone_list(){
         $techpersonzone = M('techpersonzone as a');
-        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> field('c.tname,b.ualiase,a.tpzid,a.tpzname') -> field('tpzdid,tpztitle,isfree,price,tpzdfirsttime')->select();
+        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> field('c.tname,b.ualiase,a.tpzid,a.tpzname') ->select();
         $this->ajaxReturn($data);
     }
 
@@ -416,7 +416,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_detail_list_by_tpzid(){
         $tpzdetail = M('tpzdetail');
         $select['tpzid'] = I('request.tpzid');
-        $data = $tpzdetail -> where($select) -> select();
+        $data = $tpzdetail -> where($select) -> field('tpzdid,tpztitle,isfree,price,tpzdfirsttime') -> select();
         $this->ajaxReturn($data);
     }
 
@@ -427,7 +427,7 @@ class JsonController extends Controller {
         $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> where("a.tpzid ='$tpzid'") -> find();
         //加关注 未实现
         $tpzdetail = M('tpzdetail');
-        $data['listcount'] = $tpzdetail -> where("tpzid = $tpzid") -> count();
+        $data['listcount'] = $tpzdetail -> where("tpzid = '$tpzid'") -> count();
         $this->ajaxReturn($data);
     }
 
