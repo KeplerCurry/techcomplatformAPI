@@ -379,5 +379,31 @@ class JsonController extends Controller {
         }
     }
 
+    //发表专栏文章
+    public function send_tech_person_zone_detail(){
+        $tpzdetail = M('tpzdetail');
+        $data['tpzid'] = I('request.tpzid');
+        $data['tpzdtitle'] = I('request.tpzdtitle');
+        $data['tpzdcontent'] = I('request.tpzdcontent');
+        $data['isfree'] = I('request.isfree');
+        if( 0 == isfree )
+        {
+            $data['price'] = I('request.price');
+        }
+        $data['tpzdid'] = "tpzd-".date("YmdHms" , time());
+        $data['tpzdfirsttime'] = date("Y:m:d H:m:s" , time());
+        if( $tpzdetail -> add($data) )
+        {
+            $success['tpzdid'] = $data['tpzdid'];
+            $success['success'] = 1;
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
     
 }
