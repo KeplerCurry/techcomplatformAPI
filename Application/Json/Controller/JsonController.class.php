@@ -416,7 +416,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_detail_list_by_tpzid(){
         $tpzdetail = M('tpzdetail');
         $select['tpzid'] = I('request.tpzid');
-        $data = $tpzdetail -> where($select) -> field('tpzdid,tpztitle,isfree,price,tpzdfirsttime') -> select();
+        $data = $tpzdetail -> where($select) -> field('tpzdid,tpzdtitle,isfree,price,tpzdfirsttime') -> select();
         $this->ajaxReturn($data);
     }
 
