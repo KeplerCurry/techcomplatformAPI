@@ -439,5 +439,63 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
-    
+    //加载专栏文章首次评论内容
+    public function load_tech_person_zone_detail_firstcommentdata(){
+        $tpzdid = I('request.tpzdid');
+        $tpzcomment = M('tpzcomment as a');
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tpzdid = '$tpzdid'") -> field('b.ualiase,a.tpzcid,a.content,a.tpzctime')->select();
+        $this->ajaxReturn($data);
+
+    }
+
+    //首次评论专栏文章
+    public function send_tech_person_zone_detail_firstcomment(){
+        $data['tpzdid'] = I('request.tpzdid');
+        $data['reviewer'] = I('request.reviewer');
+        $data['content'] = I('request.content');
+        $data['tpzcid'] = "c-".date("YmdHms" , time());
+        $data['tpzctime'] = date("Y:m:d H:m:s" ,time());
+        $tpzcomment = M('tpzcomment');
+        if( $tpzcomment -> add($data) )
+        {
+            $success['success'] = 1;
+            $success['time'] = $data['tpzctime'];
+            $success['tpzcid'] =  $data['tpzcid'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //回复首次评论专栏文章
+    public function send_tech_person_zone_detail_commentagain(){
+        $data['tpzcid'] = I('request.tpzcid');
+        $data['healer'] = I('request.healer');
+        $data['content'] = I('request.content');
+        $data['tpzcatime'] = date("Y:m:d H:m:s" ,time());
+        $tpzcommentagain = M('tpzcommentagain');
+        if( $tpzcommentagain -> add($data) )
+        {
+            $success['success'] = 1;
+            $success['time'] = $data['tpzcatime'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //加载专栏文章对首次评论的回复
+    public function load_tech_person_zone_detail_commentagaindata(){
+        $tpzcid = I('request.tpzcid');
+        $tpzcommentagain = M('tpzcommentagain as a');
+        $data = $tpzcommentagain -> join('tec_user as b on b.uid = a.healer') -> where("a.tpzcid = '$tpzcid'") -> field('b.ualiase,a.tpzcid,a.content,a.tpzcatime') -> select();
+        $this->ajaxReturn($data);
+    }
+
 }
