@@ -498,4 +498,72 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    /*
+     ******
+     *个人*
+     ******
+     */
+
+    //查看个人信息
+    //state = 0 -> 查看自己信息 state = 1 ->查看他人信息
+    public function load_user_information(){
+        $state = I('request.state');
+        if( 0 == $state )
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+
+    /*
+    *查看收藏、赞、历史记录等内容
+    *state为标识
+    * 11->关注用户 12->关注问题 13->关注专栏
+    * 21->帖子点赞 22->回答点赞 23->专栏帖子点赞
+    * 31->帖子收藏 32->专栏帖子收藏
+    * 41->最近浏览(先不加)
+    */
+
+    public function load_attention_by_state(){
+        $state = I('request.state');
+        //测试代码
+        //$state = intval($state);
+        $uid = I('request.uid');
+        $attention = M('attention as a');
+        switch ($state) {
+            case 11:
+               $data = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.ualiase') -> select();
+                break;
+            case 12:
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.tdtitle') -> select();
+                break;
+            case 13:
+                $data = $attention -> join('tec_techpersonzone as b on b.tpzid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tpzname') -> select();
+                break;
+            case 21:
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle') -> select();
+                break;
+            case 22:
+                $data = $attention -> join('tec_comment as b on b.cid = a.id') -> join('tec_techdetail as c on c.tdid = b.tdid') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.content,c.tdtitle')-> select();
+                break;
+            case 23:
+                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle') -> select();
+                break;
+            case 31:
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle') -> select();
+                break;
+            case 32:
+                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle') -> select();
+                break;
+            case 41:
+                
+                break; 
+        }
+        $this->ajaxReturn($data);
+    }
+
+
 }
