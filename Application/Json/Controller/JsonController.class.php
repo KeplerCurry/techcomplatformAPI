@@ -601,5 +601,17 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //查看购买记录
+    public function load_user_buyed(){
+        $rexpendid = I('request.uid');
+        $record = M('record as a');
+        $data1 = $record ->  join('tec_tpzdetail as c on c.tpzdid = a.rbid') -> where("a.rexpendid = '$rexpendid'") -> field('c.tpzdtitle,c.price,a.rbid,a.rtime') ->select();
+
+        $data2  = $record -> join('tec_techdetail as b on b.tdid = a.rbid') -> where("a.rexpendid = '$rexpendid'") -> field('b.tdtitle,b.price,a.rbid,a.rtime') ->select();
+
+        $data = array_merge($data1,$data2);
+        $this->ajaxReturn($data);
+        //
+    }
 
 }
