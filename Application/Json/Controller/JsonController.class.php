@@ -567,7 +567,7 @@ class JsonController extends Controller {
 
     //修改密码
     public function alter_user_password(){
-        $select['upassword'] = I('request.oldpassword');
+        $select['upassword'] = md5(I('request.oldpassword'));
         $select['uid'] = I('request.uid');
         $user = M('user');
         if( !$user -> where($select) -> find() )
@@ -578,7 +578,7 @@ class JsonController extends Controller {
         }
         else
         {
-            $data['upassword'] = I('request.newpassword');
+            $data['upassword'] = md5(I('request.newpassword'));
             if( $user -> where("uid = '$select['uid']'") -> save($data))
             {
                 $success['success'] = 1;
