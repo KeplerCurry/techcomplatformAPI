@@ -544,13 +544,13 @@ class JsonController extends Controller {
                 $data = $attention -> join('tec_techpersonzone as b on b.tpzid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tpzname') -> select();
                 break;
             case 21:
-                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle') -> select();
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> join('tec_techclassify as c on c.tid = b.tid') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle,c.tname') -> select();
                 break;
             case 22:
                 $data = $attention -> join('tec_comment as b on b.cid = a.id') -> join('tec_techdetail as c on c.tdid = b.tdid') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.content,c.tdtitle')-> select();
                 break;
             case 23:
-                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle') -> select();
+                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> join('tec_techpersonzone as c on c.tpzid = b.tpzid') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle,c.tpzname') -> select();
                 break;
             case 31:
                 $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle') -> select();
