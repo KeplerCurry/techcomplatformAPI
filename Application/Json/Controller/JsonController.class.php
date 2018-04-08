@@ -565,5 +565,32 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //修改密码
+    public function alter_user_password(){
+        $select['upassword'] = I('request.oldpassword');
+        $select['uid'] = I('request.uid');
+        $user = M('user');
+        if( !$user -> where($select) -> find() )
+        {
+            //原密码错误
+            $success['success'] = 2;
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $data['upassword'] = I('request.newpassword');
+            if( $user -> where("uid = '$select['uid']'") -> save($data))
+            {
+                $success['success'] = 1;
+                $this->ajaxReturn($success);
+            }
+            else
+            {
+                $success['success'] = 0;
+                $this->ajaxReturn($success);
+            }
+        }
+    }
+
 
 }
