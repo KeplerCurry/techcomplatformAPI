@@ -593,5 +593,13 @@ class JsonController extends Controller {
         }
     }
 
+    //查看申请
+    public function load_apply_for(){
+        $select['uid'] = I('request.uid');
+        $userapplyfor = M('userapplyfor');
+        $data = $userapplyfor -> where($select) -> select();
+        $this->ajaxReturn($data);
+    }
+
 
 }
