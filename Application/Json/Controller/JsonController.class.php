@@ -614,4 +614,15 @@ class JsonController extends Controller {
         //
     }
 
+    //查看用户信息
+    public function load_user_info(){
+        $uid = I('request.uid');
+        $user = M('user');
+        $data = $user -> where("uid = '$uid'") -> field('ualiase,ulevel,utype') -> find();
+        $attention = M('attention');
+        $data['attention_user'] = $attention -> where("id = '$uid' and state = 11") ->count();
+        $data['user_attention'] = $attention -> where(" auid = '$uid' and state = 11") -> count();
+        $this->ajaxReturn($data);
+    }
+
 }
