@@ -625,4 +625,25 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //获取用户个人发布的帖子、回答等列表
+    public function load_user_send(){
+        $state = I('request.state');
+        $uid = I('request.uid');
+        switch ($state) {
+            case 1:
+                $techdetail = M('techdetail as a');
+                $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') ->where("a.tuid = '$uid'") ->field('a.tdid,a.tdtitle,b.tname') -> select();
+                break;
+            case 2:
+                $comment = M('comment as a');
+                $data = $comment -> join('tec_techdetail as b on b.tdid = a.tdid') -> where("a.reviewer = '$uid' and state = 1") -> field('a.cid,a.content,b.tdtitle') -> select();
+                break;
+            case 3:
+                $tpzdetail = M('tpzdetail as a');
+                $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> where("b.uid = '$uid'") -> field('a.tpzdtitle,b.tpzname,a.tpzdid') -> select();
+                break;
+        }
+        $this->ajaxReturn($data);
+    }
+
 }
