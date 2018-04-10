@@ -646,4 +646,53 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    /*
+     *
+     *留言
+     *
+     */
+
+    //发送留言
+    public function send_message(){
+        $message = M('message');
+        $data['receiveid'] = I('request.userid');
+        $data['sendid'] = I('request.mineid');
+        $data['text'] = I('request.text');
+        $data['isread'] = 0;
+        $data['createtime'] = date("Y:m:d H:m:s" , time());
+        $data['mid'] = "m-".date("YmdHms" ,time());
+        if( $message -> add($data))
+        {
+            $success['success'] = 1;
+            $success['createtime'] = $data['createtime'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
+    //查看留言列表、信息等
+    public function load_message_list(){
+        $message = M('message as a');
+        $mineid = I('request.mineid');
+        $data['count'] = $message -> where("receiveid = '$mineid' and isread = 0") -> count();
+        $data['list'] = $message -> join('tec_user as b on b.uid = sendid') -> where("a.receiveid = '$mineid'") -> distinct('a.sendid') -> field('a.sendid,b.ualiase') -> select();
+
+        $this->ajaxReturn($data);
+    }
+
+    //通过指定uid查看留言
+    public function load_message_by_uid(){
+        $mineid = I('request.mineid');
+        $userid = I('request.userid');
+        $message = M('message as a');
+        $state['isread'] = 1;
+        $message -> where("receiveid = '$mineid' and sendid = '$userid'") -> save($state);
+        $data = $message -> join('tec_user as b on b.uid = a.sendid') -> where("a.receiveid = '$mineid' and a.sendid = '$userid' or a.receiveid = '$userid' and a.sendid = '$mineid'") -> order('a.createtime ASC') -> field('a.mid,a.receiveid,a.sendid,a.text,a.createtime,a.isread,b.ualiase') -> select();
+        $this->ajaxReturn($data);
+    }
+
 }
