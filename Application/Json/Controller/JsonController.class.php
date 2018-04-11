@@ -659,8 +659,8 @@ class JsonController extends Controller {
         $data['sendid'] = I('request.mineid');
         $data['text'] = I('request.text');
         $data['isread'] = 0;
-        $data['createtime'] = date("Y:m:d H:m:s" , time());
-        $data['mid'] = "m-".date("YmdHms" ,time());
+        $data['createtime'] = date("Y:m:d H:i:s" , time());
+        $data['mid'] = "m-".date("YmdHis" ,time());
         if( $message -> add($data))
         {
             $success['success'] = 1;
