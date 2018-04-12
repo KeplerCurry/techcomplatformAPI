@@ -74,7 +74,7 @@ class JsonController extends Controller {
             {
                 $data_return['uloginip'] = "0";
             }
-            $data_save['ulogintime'] = date("Y:m:d H:m:s" , time());
+            $data_save['ulogintime'] = date("Y-m-d H:i:s" , time());
             $data_save['uloginip'] = get_client_ip();
             if( $user -> where($id) ->save($data_save) )
             {
@@ -113,7 +113,7 @@ class JsonController extends Controller {
             $data['tuid'] = "20180319163431";
             $data['tdtitle'] = "code".$i;
             $data['tdcontent'] = "abcdedghijklnopwqrsturvjahjshkjqwhekjqwhuiyfiasgfiewrtfgiewtrf";
-            $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+            $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
             $data['isfree'] = "1";
             $data['state'] = "0";
             $techdetail -> add($data);
@@ -167,8 +167,8 @@ class JsonController extends Controller {
         $data['reviewer'] = I('request.reviewer');
         $data['content'] = I('request.content');
         $data['chit'] = 0;
-        $data['cid'] = "c-".date("YmdHms" , time());
-        $data['ctime'] = date("Y:m:d H:m:s" ,time());
+        $data['cid'] = "c-".date("YmdHis" , time());
+        $data['ctime'] = date("Y-m-d H:i:s" ,time());
         $comment = M('comment');
         if( $comment -> add($data) )
         {
@@ -189,7 +189,7 @@ class JsonController extends Controller {
         $data['cid'] = I('request.cid');
         $data['healer'] = I('request.healer');
         $data['content'] = I('request.content');
-        $data['catime'] = date("Y:m:d H:m:s" ,time());
+        $data['catime'] = date("Y-m-d H:i:s" ,time());
         $commentagain = M('commentagain');
         if( $commentagain -> add($data) )
         {
@@ -237,8 +237,8 @@ class JsonController extends Controller {
         $data['tdid'] = I('request.tdid');
         $data['reviewer'] = I('request.reviewer');
         $data['content'] = I('request.content');
-        $data['cid'] = "c-".date("YmdHms" ,time());
-        $data['ctime'] = date("Y:m:d H:m:s" , time());
+        $data['cid'] = "c-".date("YmdHis" ,time());
+        $data['ctime'] = date("Y-m-d H:i:s" , time());
         $data['chit'] = 0;
         if( $comment -> add($data) )
         {
@@ -258,7 +258,7 @@ class JsonController extends Controller {
         $data['cid'] = I('request.cid');
         $data['healer'] = I('request.healer');
         $data['content'] = I('request.content');
-        $data['catime'] = date("Y:m:d H:m:s" , time());
+        $data['catime'] = date("Y-m-d H:i:s" , time());
         if( $commentagain -> add($data) )
         {
             $success['success'] = 1;
@@ -314,8 +314,8 @@ class JsonController extends Controller {
         $data['tdtitle'] = I('request.tdtitle');
         $data['tdcontent'] = I('request.tdcontent');
         $data['tid'] = I('request.tid');
-        $data['tdid'] = "td-".date("YmdHms" , time());
-        $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+        $data['tdid'] = "td-".date("YmdHis" , time());
+        $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 1;
         if( $techdetail -> add($data) )
         {
@@ -337,8 +337,8 @@ class JsonController extends Controller {
         $data['tdtitle'] = I('request.tdtitle');
         $data['tdcontent'] = I('request.tdcontent');
         $data['tid'] = I('request.tid');
-        $data['tdid'] = "td-".date("YmdHms" , time());
-        $data['tdfirsttime'] = date("Y:m:d H:m:s" , time());
+        $data['tdid'] = "td-".date("YmdHis" , time());
+        $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 1;
         $data['isfree'] = I('request.isfree');
         if( 0 == $data['isfree'])
@@ -364,8 +364,8 @@ class JsonController extends Controller {
         $data['uid'] = I('request.uid');
         $data['tpzname'] = I('request.tpzname');
         $data['tid'] = I('request.tid');
-        $data['uafid'] = date("YmdHms" , time());
-        $data['createtime'] = date("Y:m:d H:m:s" , time());
+        $data['uafid'] = date("YmdHis" , time());
+        $data['createtime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 0;
         if( $userapplyfor -> add($data))
         {
@@ -390,8 +390,8 @@ class JsonController extends Controller {
         {
             $data['price'] = I('request.price');
         }
-        $data['tpzdid'] = "tpzd-".date("YmdHms" , time());
-        $data['tpzdfirsttime'] = date("Y:m:d H:m:s" , time());
+        $data['tpzdid'] = "tpzd-".date("YmdHis" , time());
+        $data['tpzdfirsttime'] = date("Y-m-d H:i:s" , time());
         if( $tpzdetail -> add($data) )
         {
             $success['tpzdid'] = $data['tpzdid'];
@@ -453,8 +453,8 @@ class JsonController extends Controller {
         $data['tpzdid'] = I('request.tpzdid');
         $data['reviewer'] = I('request.reviewer');
         $data['content'] = I('request.content');
-        $data['tpzcid'] = "c-".date("YmdHms" , time());
-        $data['tpzctime'] = date("Y:m:d H:m:s" ,time());
+        $data['tpzcid'] = "c-".date("YmdHis" , time());
+        $data['tpzctime'] = date("Y-m-d H:i:s" ,time());
         $tpzcomment = M('tpzcomment');
         if( $tpzcomment -> add($data) )
         {
@@ -475,7 +475,7 @@ class JsonController extends Controller {
         $data['tpzcid'] = I('request.tpzcid');
         $data['healer'] = I('request.healer');
         $data['content'] = I('request.content');
-        $data['tpzcatime'] = date("Y:m:d H:m:s" ,time());
+        $data['tpzcatime'] = date("Y-m-d H:i:s" ,time());
         $tpzcommentagain = M('tpzcommentagain');
         if( $tpzcommentagain -> add($data) )
         {
