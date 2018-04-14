@@ -99,7 +99,7 @@ class JsonController extends Controller {
     public function hotData(){
         $page = I('request.page');
         $techdetail = M('techdetail as a');
-        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') ->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid')->page($page,4)->select();
+        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') ->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid,a.tdcontent')->page($page,5)->select();
         $this->ajaxReturn($data);
     }
 
