@@ -58,6 +58,7 @@ class JsonController extends Controller {
             $data_return['ispassed'] = $data['ispassed'];
             $data_return['ulevel'] = $data['ulevel'];
             $data_return['uexp'] = $data['uexp'];
+            $data_return['uphoto'] = $data['uphoto'];
             if( NULL != $data['ulogintime'])
             {
                 $data_return['ulogintime'] = $data['ulogintime'];
@@ -83,7 +84,6 @@ class JsonController extends Controller {
                 if( $loginannal ->add($data_save) )
                 {
                     $data_return['success'] = 1;
-                    //echo json_encode($data_return,JSON_UNESCAPED_UNICODE);
                     $this->ajaxReturn($data_return);
                 }
             }
@@ -156,7 +156,7 @@ class JsonController extends Controller {
     public function load_detail_state_0_firstcommentdata(){
         $tdid = I('request.tdid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,a.chit')->select();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,a.chit,b.uphoto')->select();
         $this->ajaxReturn($data);
 
     }
