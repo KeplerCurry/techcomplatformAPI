@@ -279,6 +279,7 @@ class JsonController extends Controller {
         {
             $success['success'] = 0;
         }
+        $this->ajaxReturn($success);
     }
 
     //回答提问帖
