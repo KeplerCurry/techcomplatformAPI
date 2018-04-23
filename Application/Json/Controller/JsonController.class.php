@@ -262,7 +262,7 @@ class JsonController extends Controller {
      public function load_detail_state_1_firstAnswerdata(){
         $tdid = I('request.tdid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.uphoto,b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
         $this->ajaxReturn($data);
     }
 
