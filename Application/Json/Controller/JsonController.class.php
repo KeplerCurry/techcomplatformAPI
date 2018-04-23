@@ -271,7 +271,7 @@ class JsonController extends Controller {
         $attention = M('attention');
         $auid = I('request.uid');
         $id = I('request.id');
-        if($attention -> where("auid = '$auid' and id = '$id' and state = 12"))
+        if($attention -> where("auid = '$auid' and id = '$id' and state = 12") -> find())
         {
             $success['success'] = 1;
         }
