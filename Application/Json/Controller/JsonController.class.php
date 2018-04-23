@@ -327,7 +327,7 @@ class JsonController extends Controller {
     public function load_detail_state_1_answerData(){
         $cid = I('request.cid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.cid = '$cid'") -> field('b.ualiase,a.cid,a.content,a.chit,a.ctime')->find();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.cid = '$cid'") -> field('b.uid,b.uphoto,b.ualiase,a.cid,a.content,a.chit,a.ctime')->find();
         
         if( null != $data)
         {
@@ -341,6 +341,31 @@ class JsonController extends Controller {
             $data['success'] = 0;
             $this->ajaxReturn($data);
         }
+    }
+
+    //获取用户是否对回答进行关注用户、点赞操作
+    public function getUserForTheAnswer(){
+        $attention = M('attention');
+        $auid = I('request.auid');
+        $uid = I('request.uid');
+        $cid = I('request.cid');
+        if( $attention -> where("auid = '$auid' and id = '$uid' and state = 11") -> find())
+        {
+            $data['userflag'] = 1;
+        }
+        else
+        {
+            $data['userflag'] = 0;
+        }
+        if( $attention -> where("auid = '$auid' and id = '$cid' and state = 22") -> find())
+        {
+            $data['likeflag'] = 1;
+        }
+        else
+        {
+            $data['likeflag'] = 0;
+        }
+        $this->ajaxReturn($data);
     }
 
     //查看评论回答列表
