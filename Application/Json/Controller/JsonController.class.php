@@ -148,7 +148,7 @@ class JsonController extends Controller {
     public function load_detail_state_0(){
         $tdid = I('request.tdid');
         $techdetail = M('techdetail as a');
-        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
+        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.uphoto,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
         $attention = M('attention');
         $data['likecount'] = $attention -> where("id = '$tdid' and state = 21 ") -> count();
         $this->ajaxReturn($data);
