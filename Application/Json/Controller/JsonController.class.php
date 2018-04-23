@@ -149,6 +149,8 @@ class JsonController extends Controller {
         $tdid = I('request.tdid');
         $techdetail = M('techdetail as a');
         $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
+        $attention = M('attention');
+        $data['likecount'] = $attention -> where("id = '$tdid' and state = 21 ") -> count();
         $this->ajaxReturn($data);
     }
 
@@ -695,4 +697,45 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //点赞、收藏、关注(添加、取消)通用接口
+    public function common_l_c_a(){
+        $attention = M('attention');
+        $flag = I('request.flag');
+        $data['state'] = I('request.state');
+        $data['id'] = I('request.id');
+        $data['auid'] = I('request.uid');
+        if( 0 == $flag )
+        {
+            $data['aid'] = "a-".date('YmdHis',time());
+            if($attention -> add($data))
+            {
+                $success['success'] = 1;
+            }
+            else
+            {
+                $success['success'] = 0;
+            }
+        }
+        else
+        {
+            if( $attention -> where($data) -> find())
+            {
+                if($attention->where($data)->delete())
+                {
+                    $success['success'] = 1;
+                }
+                else
+                {
+                    $success['success'] = 0;
+                }
+            }
+            else
+            {
+                $success['success'] = 0;
+            }     
+        }
+        $this->ajaxReturn($success);
+    }
+
+    //
 }
