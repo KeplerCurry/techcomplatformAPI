@@ -372,7 +372,7 @@ class JsonController extends Controller {
     public function load_detail_state_1_commentAnswer(){
         $select['cid'] = I('request.cid');
         $commentagain = M('commentagain as a');
-        $data = $commentagain ->join('tec_user as b on b.uid = a.healer')->field('a.catime,a.content,a.cid,b.ualiase') -> where($select) -> select();
+        $data = $commentagain ->join('tec_user as b on b.uid = a.healer')->field('a.catime,a.content,a.cid,b.ualiase,b.uphoto') -> where($select) -> select();
         $this->ajaxReturn($data);
     }
 
