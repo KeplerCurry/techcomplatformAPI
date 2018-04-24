@@ -114,9 +114,9 @@ class JsonController extends Controller {
     public function attentionData(){
         $uid = I('request.uid');
         $attention = M('attention as a');
-        $data['user'] = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = 11") -> field('b.uid,b.ualiase,b.ulevel,b.utype') -> select();
+        $data['user'] = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = 11") -> field('b.uid,b.ualiase,b.ulevel,b.utype,b.uphoto') -> select();
         $data['detail'] = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state = 12") -> field('b.tdid,b.tdtitle,b.attention,b.answer') -> select();
-        $data['techpersonzone'] = $attention ->join('tec_techpersonzone as b on b.tpzid = a.id') ->join('tec_user as c on c.uid = b.uid') -> where("a.auid = '$uid' and a.state = 13") -> field('b.tpzname,b.tpzid,c.ualiase,c.uphoto')->select();
+        $data['techpersonzone'] = $attention ->join('tec_techpersonzone as b on b.tpzid = a.id') -> join('tec_user as c on c.uid = b.uid') -> where("a.auid = '$uid' and a.state = 13") -> field('b.tpzname,b.tpzid,c.ualiase,c.uphoto')->select();
         $this->ajaxReturn($data);
     }
     public function addTestData(){
