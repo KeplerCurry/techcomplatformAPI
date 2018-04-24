@@ -99,10 +99,26 @@ class JsonController extends Controller {
     public function hotData(){
         $page = I('request.page');
         $techdetail = M('techdetail as a');
-        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where('a.answer >= 10 and a.attention >= 10 or a.collect >= 10 and a.like >= 10')->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid,a.tdcontent,a.attention,a.answer,a.like,a.collect')->page($page,5)->select();
+        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where('a.answer >= 10 and a.attention >= 10 or a.collect >= 10 and a.like >= 10')->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid,a.tdcontent,a.attention,a.answer,a.like,a.collect')-> order('a.tdfirsttime DESC')-> page($page,5)->select();
         $this->ajaxReturn($data);
     }
+    //app推荐内容
+    public function commentData(){
+        $page = I('request.page');
+        $techdetail = M('techdetail as a');
+        $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid,a.tdcontent,a.attention,a.answer,a.like,a.collect')-> order('a.tdfirsttime DESC')-> page($page,5)->select();
+        $this->ajaxReturn($data);
+    }   
 
+    //app关注内容
+    public function attentionData(){
+        $uid = I('request.uid');
+        $attention = M('attention as a');
+        $data['user'] = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = 11") -> field('b.uid,b.ualiase,b.ulevel,b.utype') -> select();
+        $data['detail'] = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state = 12") -> field('b.tdid,b.tdtitle,b.attention,b.answer') -> select();
+        $data['techpersonzone'] = $attention ->join('tec_techpersonzone as b on b.tpzid = a.id') ->join('tec_user as c on c.uid = b.uid') -> where("a.auid = '$uid' and a.state = 13") -> field('b.tpzname,b.tpzid,c.ualiase,c.uphoto')->select();
+        $this->ajaxReturn($data);
+    }
     public function addTestData(){
         $i = 0;
         $techdetail = M("techdetail");
