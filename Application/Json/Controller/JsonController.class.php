@@ -102,6 +102,16 @@ class JsonController extends Controller {
         $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where('a.answer >= 10 and a.attention >= 10 or a.collect >= 10 and a.like >= 10')->field('b.tname,a.state,a.isfree,a.tdtitle,a.tdfirsttime,a.tdid,a.tdcontent,a.attention,a.answer,a.like,a.collect')-> order('a.tdfirsttime DESC')-> page($page,5)->select();
         $this->ajaxReturn($data);
     }
+
+    //技术贴/问题 数据获取
+    public function techDetailOrQuestonByTid(){
+        $page = I('request.page');
+        $tid = I('request.tid');
+        $state = I('request.state');
+        $techdetail = M('techdetail');
+        $data = $techdetail -> where("state = $state and tid = '$tid'") ->page($page,5) -> select();
+        $this->ajaxReturn($data);
+    }
     //app推荐内容
     public function commentData(){
         $page = I('request.page');
