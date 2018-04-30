@@ -781,7 +781,7 @@ class JsonController extends Controller {
         $message = M('message as a');
         $mineid = I('request.mineid');
         $data['count'] = $message -> where("receiveid = '$mineid' and isread = 0") -> count();
-        $data['list'] = $message -> join('tec_user as b on b.uid = sendid') -> where("a.receiveid = '$mineid'") -> distinct('a.sendid') -> field('a.sendid,b.ualiase') -> select();
+        $data['list'] = $message -> join('tec_user as b on b.uid = sendid') -> where("a.receiveid = '$mineid'") -> distinct('a.sendid') -> field('a.sendid,b.ualiase,b.uphoto') -> select();
 
         $this->ajaxReturn($data);
     }
@@ -793,7 +793,7 @@ class JsonController extends Controller {
         $message = M('message as a');
         $state['isread'] = 1;
         $message -> where("receiveid = '$mineid' and sendid = '$userid'") -> save($state);
-        $data = $message -> join('tec_user as b on b.uid = a.sendid') -> where("a.receiveid = '$mineid' and a.sendid = '$userid' or a.receiveid = '$userid' and a.sendid = '$mineid'") -> order('a.createtime ASC') -> field('a.mid,a.receiveid,a.sendid,a.text,a.createtime,a.isread,b.ualiase') -> select();
+        $data = $message -> join('tec_user as b on b.uid = a.sendid') -> where("a.receiveid = '$mineid' and a.sendid = '$userid' or a.receiveid = '$userid' and a.sendid = '$mineid'") -> order('a.createtime ASC') -> field('a.mid,a.receiveid,a.sendid,a.text,a.createtime,a.isread,b.ualiase,b.uphoto') -> select();
         $this->ajaxReturn($data);
     }
 
