@@ -100,7 +100,7 @@ class JsonController extends Controller {
     //上传头像
     function uploadUser(){
         $upload = new \Think\Upload(); // 实例化上传类
-        $upload->maxSize = 3145728; // 设置附件上传大小
+        $upload->maxSize = 10485760; // 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
         $upload->rootPath = './Public/userphoto/'; // 设置附件上传根目录
         $upload->autoSub = false; //关闭子目录，默认为ture
