@@ -95,6 +95,52 @@ class JsonController extends Controller {
             $this->ajaxReturn($data);
         }
     }
+
+
+    //上传头像
+    function uploadUser(){
+        $upload = new \Think\Upload(); // 实例化上传类
+        $upload->maxSize = 3145728; // 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
+        $upload->rootPath = './Public/userphoto/'; // 设置附件上传根目录
+        $upload->autoSub = false; //关闭子目录，默认为ture
+        $info = $upload->upload(); // 上传文件
+        if (!$info) { // 上传错误提示错误信息
+            $this->error($upload->getError());
+        } else { // 上传成功
+            // $this->success('上传成功！');
+            return $info;
+        }
+    }
+
+    //修改用户信息
+    public function editUserInfo(){
+        $user = M('user');
+        $uid['uid'] = I('request.uid');
+        $data['ualiase'] = I('request.ualiase');
+        if ( 0 == $_FILES['uphoto']['error']) 
+        {
+            $info=$this->uploadUser();
+            $data['uphoto'] = $info['uphoto']['savename'];
+        }
+        else
+        {
+            $data['uphoto'] = 'default.jpg';
+        }
+        if( $user -> where($uid) -> save($data) )
+        {
+            $success['success'] = 1;
+            $success['uphoto'] = $data['uphoto'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+
+    }
+
     //app热门内容
     public function hotData(){
         $page = I('request.page');
