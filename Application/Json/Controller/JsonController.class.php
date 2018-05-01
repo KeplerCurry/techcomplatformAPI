@@ -1083,7 +1083,8 @@ class JsonController extends Controller {
     //修改发表内容通用接口
     //state为标识 0->帖子 1->问题 2->回答 3->专栏贴
     public function editSendByState(){
-        $state = I('request.state');
+        $state = I('request.state');]
+        $state = intval($state);
         switch ($state) {
             case 0:
                 $techdetail = M('techdetail');
@@ -1091,7 +1092,10 @@ class JsonController extends Controller {
                 $data['tdtitle'] = I('request.tdtitle');
                 $data['tdcontent'] = I('request.tdcontent');
                 $data['isfree'] = I('request.isfree');
-                $data['price'] = I('request.price');
+                $data['isfree'] = intval($data['isfree']);
+                if( 0 == $data['isfree'] ){
+                   $data['price'] = I('request.price'); 
+                }
                 if( $techdetail -> where("tdid = '$id'") -> save($data))
                 {
                     $success['success'] = 1;
@@ -1107,7 +1111,10 @@ class JsonController extends Controller {
                 $data['tdtitle'] = I('request.tdtitle');
                 $data['tdcontent'] = I('request.tdcontent');
                 $data['isfree'] = I('request.isfree');
-                $data['price'] = I('request.price');
+                $data['isfree'] = intval($data['isfree']);
+                if( 0 == $data['isfree'] ){
+                   $data['price'] = I('request.price'); 
+                }
                 if( $techdetail -> where("tdid = '$id'") -> save($data))
                 {
                     $success['success'] = 1;
@@ -1136,7 +1143,10 @@ class JsonController extends Controller {
                 $data['tpzdtitle'] = I('request.tdtitle');
                 $data['tpzdcontent'] = I('request.tdcontent');
                 $data['isfree'] = I('request.isfree');
-                $data['price'] = I('request.price');
+                $data['isfree'] = intval($data['isfree']);
+                if( 0 == $data['isfree'] ){
+                   $data['price'] = I('request.price'); 
+                }
                 if( $tpzdetail -> where("tpzdid = '$id'") -> save($data))
                 {
                     $success['success'] = 1;
