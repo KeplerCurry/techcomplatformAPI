@@ -638,7 +638,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_detail_firstcommentdata(){
         $tpzdid = I('request.tpzdid');
         $tpzcomment = M('tpzcomment as a');
-        $data = $tpzcomment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tpzdid = '$tpzdid'") -> field('b.ualiase,a.tpzcid,a.content,a.tpzctime')->select();
+        $data = $tpzcomment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tpzdid = '$tpzdid'") -> field('b.ualiase,a.tpzcid,a.content,a.tpzctime,b.uphoto')->select();
         $this->ajaxReturn($data);
 
     }
