@@ -1029,5 +1029,124 @@ class JsonController extends Controller {
         $this->ajaxReturn($success);
     }
 
-    //
+    //获取用户已发布的帖子、问题、专栏贴列表
+    //state为标识 0->帖子 1->问题 2->回答 3->专栏贴
+    public function getUserSendList(){
+        $state = I('request.state');
+        $uid = I('request.uid');
+        switch ($state) {
+            case 0:
+                $techdetail = M('techdetail as a');
+                $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid')->where("a.tuid = '$uid' and a.state = 0")-> field('a.tdid,a.tdtitle,b.tname')->select();
+                break;
+            case 1:
+                $techdetail = M('techdetail as a');
+                $data = $techdetail -> join('tec_techclassify as b on b.tid = a.tid')->where("a.tuid = '$uid' and a.state = 1")-> field('a.tdid,a.tdtitle,b.tname')->select();
+                break;
+            case 2:
+                $comment = M('comment as a');
+                $data = $comment -> join('tec_techdetail as b on b.tdid = a.tdid') -> where("a.reviewer = '$uid' and b.state = 1") -> field('a.cid,a.content,b.tdtitle')->select();
+                break;
+            case 3:
+                $tpzdetail = M('tpzdetail as a');
+                $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> field('a.tpzdtitle,a.tpzdid')->select()
+                break;
+        }
+        $this->ajaxReturn($data);
+    }
+
+    //修改页面通过id获取数据
+    public function getDataByIdFromEdit(){
+        $state = I('request.state');
+        $id = I('request.id');
+        switch ($state) {
+            case 0:
+                $techdetail = M('techdetail');
+                $data = $techdetail -> where("tdid = '$id'")->field('tdtitle,tdcontent,isfree,price')->find();
+                break;
+            case 1:
+                $techdetail = M('techdetail');
+                $data = $techdetail -> where("tdid = '$id'")->field('tdtitle,tdcontent,isfree,price')->find();
+                break;
+            case 2:
+                $comment = M('comment');
+                $data = $comment -> where("cid = '$id'") -> field('content')->find();
+                break;
+            case 3:
+                $tpzdetail = M('tpzdetail');
+                $data = $tpzdetail -> where("tpzdid = '$id'") -> field('tpzdtitle,tpzdcontent,isfree,price')->find();
+                break;
+        }
+        $this->ajaxReturn($data);
+    }
+
+    //修改发表内容通用接口
+    //state为标识 0->帖子 1->问题 2->回答 3->专栏贴
+    public function editSendByState(){
+        $state = I('request.state');
+        switch ($state) {
+            case 0:
+                $techdetail = M('techdetail');
+                $id = I('request.id');
+                $data['tdtitle'] = I('request.tdtitle');
+                $data['tdcontent'] = I('request.tdcontent');
+                $data['isfree'] = I('request.isfree');
+                $data['price'] = I('request.price');
+                if( $techdetail -> where("tdid = '$id'") -> save($data))
+                {
+                    $success['success'] = 1;
+                }
+                else
+                {
+                    $success['success'] = 0;
+                }
+                break;
+            case 1:
+                $techdetail = M('techdetail');
+                $id = I('request.id');
+                $data['tdtitle'] = I('request.tdtitle');
+                $data['tdcontent'] = I('request.tdcontent');
+                $data['isfree'] = I('request.isfree');
+                $data['price'] = I('request.price');
+                if( $techdetail -> where("tdid = '$id'") -> save($data))
+                {
+                    $success['success'] = 1;
+                }
+                else
+                {
+                    $success['success'] = 0;
+                }
+                break;
+            case 2:
+                $comment = M('comment');
+                $id = I('request.id');
+                $data['content'] = I('request.content');
+                if( $comment -> where("cid = '$id'") -> save($data))
+                {
+                    $success['success'] = 1;
+                }
+                else
+                {
+                    $success['success'] = 0;
+                }
+                break;
+            case 3:
+                $tpzdetail = M('tpzdetail');
+                $id = I('request.id');
+                $data['tpzdtitle'] = I('request.tdtitle');
+                $data['tpzdcontent'] = I('request.tdcontent');
+                $data['isfree'] = I('request.isfree');
+                $data['price'] = I('request.price');
+                if( $tpzdetail -> where("tpzdid = '$id'") -> save($data))
+                {
+                    $success['success'] = 1;
+                }
+                else
+                {
+                    $success['success'] = 0;
+                }
+                break;
+        }
+        $this->ajaxReturn($success);
+    }
 }
