@@ -630,7 +630,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_detail_data(){
         $tpzdetail = M('tpzdetail as a');
         $tpzdid = I('request.tpzdid');
-        $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> join('tec_user as c on c.uid = b.uid') -> where("a.tpzdid = '$tpzdid'") -> field('a.tpzdtitle,a.tpzdcontent,a.tpzdfirsttime,b.tpzname,c.ualiase,c.uphoto,c.uid') -> find();
+        $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> join('tec_user as c on c.uid = b.uid') -> where("a.tpzdid = '$tpzdid'") -> field('a.tpzdtitle,a.tpzdcontent,a.tpzdfirsttime,a.like,b.tpzname,c.ualiase,c.uphoto,c.uid') -> find();
         $this->ajaxReturn($data);
     }
 
