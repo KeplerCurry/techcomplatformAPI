@@ -873,7 +873,7 @@ class JsonController extends Controller {
         $uid = I('request.uid');
         $userapplyfor = M('userapplyfor as a');
         $data1 = $userapplyfor -> join('tec_techpersonzone as b on b.tpzname = a.tpzname')-> where("a.uid = '$uid' and a.flag = 1") -> field('b.tpzid,a.flag,a.createtime,a.state')-> select();
-        $data2 = $userapplyfor -> where("uid = '$uid' and flag = 0") ->select();
+        $data2 = $userapplyfor -> where("a.uid = '$uid' and a.flag = 0") ->select();
         $data = array_merge($data1,$data2);
         $this->ajaxReturn($data);
     }
