@@ -53,6 +53,7 @@ class JsonController extends Controller {
         if( $data = $user->where($login_data)->find() )
         {
             $id['uid'] = $data['uid'];
+            $id = $data['uid'];
             $data_return['uid'] = $data['uid'];
             $data_return['ualiase'] = $data['ualiase'];
             $data_return['ispassed'] = $data['ispassed'];
@@ -77,6 +78,26 @@ class JsonController extends Controller {
             }
             $data_save['ulogintime'] = date("Y-m-d H:i:s" , time());
             $data_save['uloginip'] = get_client_ip();
+            $userapplyfor = M('userapplyfor');
+            $techpersonzone = M('techpersonzone');
+            if( $userapplyfor -> where("uid = '$id'")-> find())
+            {
+                if( $data1 = $techpersonzone -> where("uid = '$id'") -> find())
+                {
+                    $data_return['applyTPZState'] = 2;
+                    $data_return['tpzid'] = $data1['tpzid'];
+                }
+                else
+                {
+                    $data_return['applyTPZState'] = 1;
+                    $data_return['tpzid'] = null;
+                }
+            }
+            else
+            {
+                $data_return['applyTPZState'] = 0;
+                $data_return['tpzid'] = null;
+            }
             if( $user -> where($id) ->save($data_save) )
             {
                 $loginannal = M('loginannal');
