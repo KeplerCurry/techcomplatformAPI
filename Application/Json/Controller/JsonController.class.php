@@ -556,7 +556,7 @@ class JsonController extends Controller {
     //获取专栏列表
     public function load_tech_person_zone_list(){
         $techpersonzone = M('techpersonzone as a');
-        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid') -> join('tec_techclassify as c on c.tid = a.tid') -> field('c.tname,b.ualiase,a.tpzid,a.tpzname') ->select();
+        $data = $techpersonzone -> join('tec_user as b on b.uid = a.uid')-> join('tec_techclassify as c on c.tid = a.tid') -> field('c.tname,b.ualiase,a.tpzid,a.tpzname,b.uphoto') ->select();
         $this->ajaxReturn($data);
     }
 
