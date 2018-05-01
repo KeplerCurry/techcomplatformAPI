@@ -1049,7 +1049,7 @@ class JsonController extends Controller {
                 break;
             case 3:
                 $tpzdetail = M('tpzdetail as a');
-                $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> field('a.tpzdtitle,a.tpzdid')->select()
+                $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> field('a.tpzdtitle,a.tpzdid')->select();
                 break;
         }
         $this->ajaxReturn($data);
