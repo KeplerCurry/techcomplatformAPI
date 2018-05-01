@@ -870,9 +870,9 @@ class JsonController extends Controller {
 
     //查看申请
     public function load_apply_for(){
-        $select['uid'] = I('request.uid');
+        $uid = I('request.uid');
         $userapplyfor = M('userapplyfor as a');
-        $data = $userapplyfor -> join('tec_techpersonzone as b on b.tpzname = a.tpzname')-> where($select) -> field('b.tpzid,a.flag,a.createtime,a.state')-> select();
+        $data = $userapplyfor -> join('tec_techpersonzone as b on b.tpzname = a.tpzname')-> where("a.uid = '$uid'") -> field('b.tpzid,a.flag,a.createtime,a.state')-> select();
         $this->ajaxReturn($data);
     }
 
