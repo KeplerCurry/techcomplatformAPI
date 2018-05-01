@@ -579,6 +579,22 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //判断用户是否关注个人专栏
+    public function getUserAttentionTPZ(){
+        $attention = M('attention');
+        $auid = I('request.uid');
+        $id = I('request.id');
+        if($attention -> where("auid = '$auid' and id = '$id' and state = 13") -> find())
+        {
+            $success['success'] = 1;
+        }
+        else
+        {
+            $success['success'] = 0;
+        }
+        $this->ajaxReturn($success);
+    }
+
     //查看专栏详细文章
     public function load_tech_person_zone_detail_data(){
         $tpzdetail = M('tpzdetail as a');
