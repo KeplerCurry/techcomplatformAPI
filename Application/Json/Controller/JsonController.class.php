@@ -96,6 +96,63 @@ class JsonController extends Controller {
         }
     }
 
+    //上传身份证图片
+    function uploadIDCard(){
+        $upload = new \Think\Upload(); // 实例化上传类
+        $upload->maxSize = 10485760; // 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
+        $upload->rootPath = './Public/realnamepic/'; // 设置附件上传根目录
+        $upload->autoSub = false; //关闭子目录，默认为ture
+        $info = $upload->upload(); // 上传文件
+        if (!$info) { // 上传错误提示错误信息
+            $this->error($upload->getError());
+        } else { // 上传成功
+            // $this->success('上传成功！');
+            return $info;
+        }
+    }
+
+    //申请实名认证
+    public function apply_for_real_name(){
+        $userapplyfor = M('userapplyfor');
+        $data['uid'] = I('request.uid');
+        $data['uafid'] = "uaf-".date("YmdHis" , time());
+        $data['createtime'] = date("Y-m-d H:i:s" , time());
+        $data['state'] = 0;
+        $data['flag'] = 1;
+        if ( 0 == $_FILES['pic']['error']) 
+        {
+            $info=$this->uploadIDCard();
+            $data['pic'] = $info['pic']['savename'];
+        }
+        else
+        {
+            $data['pic'] = 'default.jpg';
+        }
+        if( $userapplyfor -> add($data))
+        {
+            $user = M('user');
+            $uid = $data['uid'];
+            $userdata['ispassed'] = 1;
+            if( $user -> where("uid = '$uid'") ->save($userdata))
+            {
+                $success['success'] = 1;
+                $this->ajaxReturn($success);
+            }
+            else
+            {
+                $success['success'] = 0;
+                $this->ajaxReturn($success);
+            }
+            
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
+    }
+
 
     //上传头像
     function uploadUser(){
@@ -112,6 +169,7 @@ class JsonController extends Controller {
             return $info;
         }
     }
+
 
     //修改用户信息
     public function editUserInfo(){
@@ -543,9 +601,10 @@ class JsonController extends Controller {
         $data['uid'] = I('request.uid');
         $data['tpzname'] = I('request.tpzname');
         $data['tid'] = I('request.tid');
-        $data['uafid'] = date("YmdHis" , time());
+        $data['uafid'] = "uaf-".date("YmdHis" , time());
         $data['createtime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 0;
+        $data['flag'] = 0;
         if( $userapplyfor -> add($data))
         {
             $success['success'] = 1;
