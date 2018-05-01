@@ -271,7 +271,7 @@ class JsonController extends Controller {
         {
             $data['userflag'] = 0;
         }
-        if( $attention -> where("auid = '$auid' and id = '$tdid' and state = 23") -> find())
+        if( $attention -> where("auid = '$auid' and id = '$tpzdid' and state = 23") -> find())
         {
             $data['likeflag'] = 1;
         }
@@ -279,7 +279,7 @@ class JsonController extends Controller {
         {
             $data['likeflag'] = 0;
         }
-        if( $attention -> where("auid = '$auid' and id = '$tdid' and state = 32") -> find())
+        if( $attention -> where("auid = '$auid' and id = '$tpzdid' and state = 32") -> find())
         {
             $data['collectflag'] = 1;
         }
