@@ -903,6 +903,22 @@ class JsonController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    //判断用户在查看其他用户页面中是否关注该用户
+    public function getUserAttentionUser(){
+        $attention = M('attention');
+        $auid = I('request.uid');
+        $id = I('request.id');
+        if($attention -> where("auid = '$auid' and id = '$id' and state = 11") -> find())
+        {
+            $success['success'] = 1;
+        }
+        else
+        {
+            $success['success'] = 0;
+        }
+        $this->ajaxReturn($success);
+    }
+
     //获取用户个人发布的帖子、回答等列表
     public function load_user_send(){
         $state = I('request.state');
