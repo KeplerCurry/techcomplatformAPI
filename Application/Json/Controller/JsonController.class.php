@@ -872,7 +872,7 @@ class JsonController extends Controller {
     public function load_apply_for(){
         $uid = I('request.uid');
         $userapplyfor1 = M('userapplyfor as a');
-        $data1 = $userapplyfor -> join('tec_techpersonzone as b on b.tpzname = a.tpzname')-> where("a.uid = '$uid' and a.flag = 1") -> field('b.tpzid,a.flag,a.createtime,a.state')-> select();
+        $data1 = $userapplyfor1 -> join('tec_techpersonzone as b on b.tpzname = a.tpzname')-> where("a.uid = '$uid' and a.flag = 1") -> field('b.tpzid,a.flag,a.createtime,a.state')-> select();
         $userapplyfor2 = M('userapplyfor');
         $data2 = $userapplyfor2 -> where("uid = '$uid' and flag = 0") ->select();
         $data = array_merge($data1,$data2);
