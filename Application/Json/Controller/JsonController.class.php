@@ -220,9 +220,7 @@ class JsonController extends Controller {
     public function load_detail_state_0(){
         $tdid = I('request.tdid');
         $techdetail = M('techdetail as a');
-        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.uphoto,b.uid,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime')->find();
-        $attention = M('attention');
-        $data['likecount'] = $attention -> where("id = '$tdid' and state = 21 ") -> count();
+        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.uphoto,b.uid,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime,a.like')->find();
         $this->ajaxReturn($data);
     }
 
@@ -249,6 +247,39 @@ class JsonController extends Controller {
             $data['likeflag'] = 0;
         }
         if( $attention -> where("auid = '$auid' and id = '$tdid' and state = 31") -> find())
+        {
+            $data['collectflag'] = 1;
+        }
+        else
+        {
+            $data['collectflag'] = 0;
+        }
+        $this->ajaxReturn($data);
+    }
+
+    //获取用户是否对专栏贴进行关注用户、点赞、收藏操作
+    public function getUserA_L_C_TPZ(){
+        $attention = M('attention');
+        $auid = I('request.auid');
+        $uid = I('request.uid');
+        $tpzdid = I('request.tpzdid');
+        if( $attention -> where("auid = '$auid' and id = '$uid' and state = 11") -> find())
+        {
+            $data['userflag'] = 1;
+        }
+        else
+        {
+            $data['userflag'] = 0;
+        }
+        if( $attention -> where("auid = '$auid' and id = '$tdid' and state = 23") -> find())
+        {
+            $data['likeflag'] = 1;
+        }
+        else
+        {
+            $data['likeflag'] = 0;
+        }
+        if( $attention -> where("auid = '$auid' and id = '$tdid' and state = 32") -> find())
         {
             $data['collectflag'] = 1;
         }
@@ -599,7 +630,7 @@ class JsonController extends Controller {
     public function load_tech_person_zone_detail_data(){
         $tpzdetail = M('tpzdetail as a');
         $tpzdid = I('request.tpzdid');
-        $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> join('tec_user as c on c.uid = b.uid') -> where("a.tpzdid = '$tpzdid'") -> field('a.tpzdtitle,a.tpzdcontent,a.tpzdfirsttime,b.tpzname,c.ualiase') -> find();
+        $data = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') -> join('tec_user as c on c.uid = b.uid') -> where("a.tpzdid = '$tpzdid'") -> field('a.tpzdtitle,a.tpzdcontent,a.tpzdfirsttime,b.tpzname,c.ualiase,c.uphoto,c.uid') -> find();
         $this->ajaxReturn($data);
     }
 
