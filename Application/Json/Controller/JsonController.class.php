@@ -1138,8 +1138,8 @@ class JsonController extends Controller {
             case 3:
                 $tpzdetail = M('tpzdetail');
                 $id = I('request.id');
-                $data['tpzdtitle'] = I('request.tdtitle');
-                $data['tpzdcontent'] = I('request.tdcontent');
+                $data['tpzdtitle'] = I('request.tpzdtitle');
+                $data['tpzdcontent'] = I('request.tpzdcontent');
                 $data['tpzdaltertime'] = date("Y-m-d H:i:s" , time());
                 $data['isfree'] = I('request.isfree');
                 $data['isfree'] = intval($data['isfree']);
