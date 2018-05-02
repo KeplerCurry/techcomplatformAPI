@@ -575,6 +575,7 @@ class JsonController extends Controller {
         $data['tdid'] = "td-".date("YmdHis" , time());
         $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 1;
+        $data['isfree'] = 1;
         if( $techdetail -> add($data) )
         {
             $success['success'] = 1;
@@ -1066,7 +1067,7 @@ class JsonController extends Controller {
                 break;
             case 1:
                 $techdetail = M('techdetail');
-                $data = $techdetail -> where("tdid = '$id'")->field('tdtitle,tdcontent,isfree,price')->find();
+                $data = $techdetail -> where("tdid = '$id'")->field('tdtitle,tdcontent')->find();
                 break;
             case 2:
                 $comment = M('comment');
@@ -1091,6 +1092,7 @@ class JsonController extends Controller {
                 $id = I('request.id');
                 $data['tdtitle'] = I('request.tdtitle');
                 $data['tdcontent'] = I('request.tdcontent');
+                $data['tdaltertime'] = date("Y-m-d H:i:s" , time());
                 $data['isfree'] = I('request.isfree');
                 $data['isfree'] = intval($data['isfree']);
                 if( 0 == $data['isfree'] ){
@@ -1128,6 +1130,7 @@ class JsonController extends Controller {
                 $comment = M('comment');
                 $id = I('request.id');
                 $data['content'] = I('request.content');
+                $data['ctime'] = date("Y-m-d H:i:s" , time());
                 if( $comment -> where("cid = '$id'") -> save($data))
                 {
                     $success['success'] = 1;
@@ -1142,6 +1145,7 @@ class JsonController extends Controller {
                 $id = I('request.id');
                 $data['tpzdtitle'] = I('request.tdtitle');
                 $data['tpzdcontent'] = I('request.tdcontent');
+                $data['tpzdaltertime'] = date("Y-m-d H:i:s" , time());
                 $data['isfree'] = I('request.isfree');
                 $data['isfree'] = intval($data['isfree']);
                 if( 0 == $data['isfree'] ){
