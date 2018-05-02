@@ -1070,8 +1070,8 @@ class JsonController extends Controller {
                 $data = $techdetail -> where("tdid = '$id'")->field('tdtitle,tdcontent')->find();
                 break;
             case 2:
-                $comment = M('comment');
-                $data = $comment -> where("cid = '$id'") -> field('content')->find();
+                $comment = M('comment as a');
+                $data = $comment ->join('tec_techdetail as b on b.tdid = a.tdid')-> where("a.cid = '$id'") -> field('a.content,b.tdtitle')->find();
                 break;
             case 3:
                 $tpzdetail = M('tpzdetail');
@@ -1112,11 +1112,6 @@ class JsonController extends Controller {
                 $id = I('request.id');
                 $data['tdtitle'] = I('request.tdtitle');
                 $data['tdcontent'] = I('request.tdcontent');
-                $data['isfree'] = I('request.isfree');
-                $data['isfree'] = intval($data['isfree']);
-                if( 0 == $data['isfree'] ){
-                   $data['price'] = I('request.price'); 
-                }
                 if( $techdetail -> where("tdid = '$id'") -> save($data))
                 {
                     $success['success'] = 1;
