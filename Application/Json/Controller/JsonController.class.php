@@ -645,7 +645,7 @@ class JsonController extends Controller {
         $data['tpzid'] = I('request.tpzid');
         $data['tpzdtitle'] = I('request.tpzdtitle');
         $data['tpzdcontent'] = I('request.tpzdcontent');
-        $data['isfree'] = I('request.isfree');
+        $data['isfree'] = intval(I('request.isfree')); 
         if( 0 == isfree )
         {
             $data['price'] = I('request.price');
