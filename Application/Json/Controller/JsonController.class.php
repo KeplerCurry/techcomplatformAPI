@@ -598,7 +598,7 @@ class JsonController extends Controller {
         $data['tid'] = I('request.tid');
         $data['tdid'] = "td-".date("YmdHis" , time());
         $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
-        $data['state'] = 1;
+        $data['state'] = 0;
         $data['isfree'] = I('request.isfree');
         if( 0 == $data['isfree'])
         {
@@ -1074,61 +1074,61 @@ class JsonController extends Controller {
                 if($attention->where($data)->delete())
                 {
                     if( 12 == $state )
-                {
-                    $data1['attention'] = intval($attention->where("id = '$id' and state = '12'")->count());
-                    $techdetail = M('techdetail');
-                    if( $techdetail -> where("tdid = '$id'") -> save($data1))
                     {
-                        $success['success'] = 1;
+                        $data1['attention'] = intval($attention->where("id = '$id' and state = '12'")->count());
+                        $techdetail = M('techdetail');
+                        if( $techdetail -> where("tdid = '$id'") -> save($data1))
+                        {
+                            $success['success'] = 1;
+                        }
+                        else
+                        {
+                            $success['success'] = 0;
+                        }
+                    }
+                    else if( 21 == $state )
+                    {
+                        $data1['like'] = intval($attention->where("id = '$id' and state = '21'")->count());
+                        $techdetail = M('techdetail');
+                        if( $techdetail -> where("tdid = '$id'") -> save($data1))
+                        {
+                            $success['success'] = 1;
+                        }
+                        else
+                        {
+                            $success['success'] = 0;
+                        }
+                    }
+                    else if( 22 == $state )
+                    {
+                        $data1['chit'] = intval($attention->where("id = '$id' and state = '22'")->count());
+                        $comment = M('comment');
+                        if( $comment -> where("cid = '$id'") -> save($data1))
+                        {
+                            $success['success'] = 1;
+                        }
+                        else
+                        {
+                            $success['success'] = 0;
+                        }
+                    }
+                    else if( 31 == $state)
+                    {
+                        $data1['collect'] = intval($attention->where("id = '$id' and state = '31'")->count());
+                        $techdetail = M('techdetail');
+                        if( $techdetail -> where("tdid = '$id'") -> save($data1))
+                        {
+                            $success['success'] = 1;
+                        }
+                        else
+                        {
+                            $success['success'] = 0;
+                        }
                     }
                     else
                     {
-                        $success['success'] = 0;
-                    }
-                }
-                else if( 21 == $state )
-                {
-                    $data1['like'] = intval($attention->where("id = '$id' and state = '21'")->count());
-                    $techdetail = M('techdetail');
-                    if( $techdetail -> where("tdid = '$id'") -> save($data1))
-                    {
                         $success['success'] = 1;
                     }
-                    else
-                    {
-                        $success['success'] = 0;
-                    }
-                }
-                else if( 22 == $state )
-                {
-                    $data1['chit'] = intval($attention->where("id = '$id' and state = '22'")->count());
-                    $comment = M('comment');
-                    if( $comment -> where("cid = '$id'") -> save($data1))
-                    {
-                        $success['success'] = 1;
-                    }
-                    else
-                    {
-                        $success['success'] = 0;
-                    }
-                }
-                else if( 31 == $state)
-                {
-                    $data1['collect'] = intval($attention->where("id = '$id' and state = '31'")->count());
-                    $techdetail = M('techdetail');
-                    if( $techdetail -> where("tdid = '$id'") -> save($data1))
-                    {
-                        $success['success'] = 1;
-                    }
-                    else
-                    {
-                        $success['success'] = 0;
-                    }
-                }
-                else
-                {
-                    $success['success'] = 1;
-                }
                 }
                 else
                 {
