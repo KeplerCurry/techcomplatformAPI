@@ -1307,15 +1307,15 @@ class JsonController extends Controller {
                 break;
             case 1:
                 $techdetail = M('techdetail as a');
-                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("(a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%') and a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
                 break;
             case 2:
                 $techdetail = M('techdetail as a');
-                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("(a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%') and a.state = '1'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
                 break;
             case 3:
                 $tpzdetail = M('tpzdetail as a');
-                $list['tpzdetail'] = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') ->where("a.tpzdtitle like '%$searchtext%' or a.tpzdcontent like '%$searchtext%'")-> field('a.tpzdtitle,a.tpzdid,b.tpzname')->select();
+                $list = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') ->where("a.tpzdtitle like '%$searchtext%' or a.tpzdcontent like '%$searchtext%'")-> field('a.tpzdtitle,a.tpzdid,b.tpzname')->select();
                 break;
         }
         $this->ajaxReturn($list); 
