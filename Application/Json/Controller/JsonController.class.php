@@ -1307,11 +1307,11 @@ class JsonController extends Controller {
                 break;
             case 1:
                 $techdetail = M('techdetail as a');
-                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$search%' or a.tdcontent like '%$search%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
                 break;
             case 2:
                 $techdetail = M('techdetail as a');
-                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$search%' or a.tdcontent like '%$search%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$searchtext%' or a.tdcontent like '%$searchtext%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
                 break;
             case 3:
                 $tpzdetail = M('tpzdetail as a');
