@@ -575,7 +575,11 @@ class JsonController extends Controller {
         $data['tdid'] = "td-".date("YmdHis" , time());
         $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 1;
-        $data['isfree'] = 1;
+        $data['isfree'] = intval(I('request.isfree'));
+        if( 0 == $data['isfree'])
+        {
+            $data['price'] = I('request.price');
+        }
         if( $techdetail -> add($data) )
         {
             $success['success'] = 1;
@@ -599,7 +603,7 @@ class JsonController extends Controller {
         $data['tdid'] = "td-".date("YmdHis" , time());
         $data['tdfirsttime'] = date("Y-m-d H:i:s" , time());
         $data['state'] = 0;
-        $data['isfree'] = I('request.isfree');
+        $data['isfree'] = intval(I('request.isfree'));
         if( 0 == $data['isfree'])
         {
             $data['price'] = I('request.price');
