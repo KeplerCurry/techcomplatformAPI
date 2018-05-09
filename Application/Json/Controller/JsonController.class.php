@@ -1275,4 +1275,49 @@ class JsonController extends Controller {
         }
         $this->ajaxReturn($success);
     }
+
+    /*
+     *搜索模块
+     */
+    //获取用户搜索历史记录
+    public function getUserSearch(){
+        $search = M('search');
+        $data['uid'] = I('request.uid');
+        $list = $search -> where($data) -> select();
+        $this->ajaxReturn($list);
+    }
+    //搜索功能
+    public function search(){
+        $search = M('search');
+        $uid = I('request.uid');
+        $searchtext = I('request.searchtext');
+        if( null != $uid ){
+            if( !$search -> where("uid = '$uid' and search = '$searchtext'") -> find())
+            {
+                $data['uid'] = $uid;
+                $data['search'] = $searchtext;
+                $search -> add($data);
+            }
+        }
+        $state = I('request.state');
+        switch ($state) {
+            case 0:
+                $user = M('user');
+                $list = $user -> where("ualiase like '%$searchtext%'") -> field('uid,ualiase,uphoto,ulevel,utype')->select();
+                break;
+            case 1:
+                $techdetail = M('techdetail as a');
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$search%' or a.tdcontent like '%$search%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                break;
+            case 2:
+                $techdetail = M('techdetail as a');
+                $list = $techdetail -> join('tec_techclassify as b on b.tid = a.tid') -> where("a.tdtitle like '%$search%' or a.tdcontent like '%$search%'")->where("a.state = '0'")->field('a.tdid,a.tdtitle,b.tname') -> distinct('a.tdid')->select();
+                break;
+            case 3:
+                $tpzdetail = M('tpzdetail as a');
+                $list['tpzdetail'] = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') ->where("a.tpzdtitle like '%$searchtext%' or a.tpzdcontent like '%$searchtext%'")-> field('a.tpzdtitle,a.tpzdid,b.tpzname')->select();
+                break;
+        }
+        $this->ajaxReturn($list); 
+    }
 }
