@@ -1292,10 +1292,10 @@ class JsonController extends Controller {
         $uid = I('request.uid');
         $searchtext = I('request.searchtext');
         if( null != $uid ){
-            if( !$search -> where("uid = '$uid' and search = '$searchtext'") -> find())
+            if( !$search -> where("uid = '$uid' and searchcontent = '$searchtext'") -> find())
             {
                 $data['uid'] = $uid;
-                $data['search'] = $searchtext;
+                $data['searchcontent'] = $searchtext;
                 $search -> add($data);
             }
         }
