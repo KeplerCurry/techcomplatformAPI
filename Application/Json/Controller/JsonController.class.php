@@ -885,10 +885,10 @@ class JsonController extends Controller {
                 $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> join('tec_techpersonzone as c on c.tpzid = b.tpzid') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle,c.tpzname') -> select();
                 break;
             case 31:
-                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle') -> select();
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') ->join('tec_techclassify as c on c.tid = b.tid')-> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tdtitle,c.tname') -> select();
                 break;
             case 32:
-                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle') -> select();
+                $data = $attention -> join('tec_tpzdetail as b on b.tpzdid = a.id')-> join('tec_techpersonzone as c on c.tpzid = b.tpzid') -> where("a.auid = '$uid' and a.state ='$state'") ->field('a.id,b.tpzdtitle,c.tpzname') -> select();
                 break;
             case 41:
                 
