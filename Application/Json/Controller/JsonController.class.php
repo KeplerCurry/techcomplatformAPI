@@ -867,10 +867,10 @@ class JsonController extends Controller {
         $attention = M('attention as a');
         switch ($state) {
             case 11:
-               $data = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.ualiase') -> select();
+               $data = $attention -> join('tec_user as b on b.uid = a.id') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.ualiase,b.uphoto,b.ulevel,b.utype') -> select();
                 break;
             case 12:
-                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.tdtitle') -> select();
+                $data = $attention -> join('tec_techdetail as b on b.tdid = a.id') -> join('tec_techclassify as c on c.tid = b.tid') -> where("a.auid = '$uid' and a.state = '$state'") -> field('a.id,b.tdtitle,c.tname') -> select();
                 break;
             case 13:
                 $data = $attention -> join('tec_techpersonzone as b on b.tpzid = a.id') -> where("a.auid = '$uid' and a.state ='$state'") -> field('a.id,b.tpzname') -> select();
