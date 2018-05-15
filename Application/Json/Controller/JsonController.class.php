@@ -351,7 +351,7 @@ class JsonController extends Controller {
     public function load_detail_state_0(){
         $tdid = I('request.tdid');
         $techdetail = M('techdetail as a');
-        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.uphoto,b.uid,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime,a.like')->find();
+        $data = $techdetail -> join('tec_user as b on b.uid = a.tuid') -> join('tec_techclassify as c on c.tid = a.tid')->where("a.tdid = '$tdid'") -> field('b.ualiase,b.uphoto,b.uid,b.ulevel,b.utype,c.tname,a.tdtitle,a.tdcontent,a.tdfirsttime,a.tdaltertime,a.like,b.uspecialline')->find();
         $this->ajaxReturn($data);
     }
 
@@ -561,7 +561,7 @@ class JsonController extends Controller {
     public function load_detail_state_1_answerData(){
         $cid = I('request.cid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.cid = '$cid'") -> field('b.uid,b.uphoto,b.ualiase,a.cid,a.content,a.chit,a.ctime')->find();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.cid = '$cid'") -> field('b.uid,b.uphoto,b.ualiase,a.cid,a.content,a.chit,a.ctime,b.uspecialline')->find();
         
         if( null != $data)
         {
@@ -953,7 +953,7 @@ class JsonController extends Controller {
     public function load_user_info(){
         $uid = I('request.uid');
         $user = M('user');
-        $data = $user -> where("uid = '$uid'") -> field('ualiase,ulevel,utype,uphoto') -> find();
+        $data = $user -> where("uid = '$uid'") -> field('ualiase,ulevel,utype,uphoto,uspecialline') -> find();
         $attention = M('attention');
         $data['attention_user'] = $attention -> where("id = '$uid' and state = 11") ->count();
         $data['user_attention'] = $attention -> where(" auid = '$uid' and state = 11") -> count();
