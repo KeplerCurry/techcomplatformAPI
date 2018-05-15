@@ -211,15 +211,19 @@ class JsonController extends Controller {
         {
             $data['uspecialline'] = I('request.uspecialline');
         }
-        if ( 0 == $_FILES['uphoto']['error']) 
+        if( NULL != $_FILES['uphoto'])
         {
-            $info=$this->uploadUser();
-            $data['uphoto'] = $info['uphoto']['savename'];
+            if( 0 == $_FILES['uphoto']['error']) 
+            {
+                $info=$this->uploadUser();
+                $data['uphoto'] = $info['uphoto']['savename'];
+            }
+            else
+            {
+                $data['uphoto'] = 'default.jpg';
+            } 
         }
-        else
-        {
-            $data['uphoto'] = 'default.jpg';
-        }
+        
         if( $user -> where($uid) -> save($data) )
         {
             $success['success'] = 1;
