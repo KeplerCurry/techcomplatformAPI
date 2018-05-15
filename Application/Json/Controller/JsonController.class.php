@@ -83,7 +83,7 @@ class JsonController extends Controller {
             $data_save['uloginip'] = get_client_ip();
             $userapplyfor = M('userapplyfor');
             $techpersonzone = M('techpersonzone');
-            if( $userapplyfor -> where("uid = '$uid'")-> find())
+            if( $userapplyfor -> where("uid = '$uid' and flag = 0")-> find())
             {
                 if( $data1 = $techpersonzone -> where("uid = '$uid'") -> find())
                 {
