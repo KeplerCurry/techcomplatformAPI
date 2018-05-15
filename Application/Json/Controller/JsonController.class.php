@@ -194,9 +194,54 @@ class JsonController extends Controller {
         }
     }
 
+    //修改用户信息-完善个人信息-修改头像
+    public function editUserInfoByPic(){
+        $user = M('user');
+        $uid['uid'] = I('request.uid');
+        if( NULL != I('request.ualiase'))
+        {
+            $data['ualiase'] = I('request.ualiase');
+        }
+        if( NULL != I('request.usex'))
+        {
+            $data['usex'] = I('request.usex');
+        }
+        if( NULL != I('request.uspecialline'))
+        {
+            $data['uspecialline'] = I('request.uspecialline');
+        }
+        if( NULL != $_FILES['uphoto'])
+        {
+            if( 0 == $_FILES['uphoto']['error']) 
+            {
+                $info=$this->uploadUser();
+                $data['uphoto'] = $info['uphoto']['savename'];
+            }
+            else
+            {
+                $data['uphoto'] = 'default.jpg';
+            } 
+        }
+        
+        if( $user -> where($uid) -> save($data) )
+        {
+            $success['success'] = 1;
+            $success['usex'] = $data['usex'];
+            $success['ualiase'] = $data['ualiase'];
+            $success['uspecialline'] = $data['uspecialline'];
+            $success['uphoto'] = $data['uphoto'];
+            $this->ajaxReturn($success);
+        }
+        else
+        {
+            $success['success'] = 0;
+            $this->ajaxReturn($success);
+        }
 
-    //修改用户信息-完善个人信息
-    public function editUserInfo(){
+    }
+
+    //修改用户信息-完善个人信息-不修改头像
+    public function editUserInfoNoPic(){
         $user = M('user');
         $uid['uid'] = I('request.uid');
         if( NULL != I('request.ualiase'))
