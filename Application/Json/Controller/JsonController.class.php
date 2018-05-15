@@ -255,27 +255,13 @@ class JsonController extends Controller {
         if( NULL != I('request.uspecialline'))
         {
             $data['uspecialline'] = I('request.uspecialline');
-        }
-        if( NULL != $_FILES['uphoto'])
-        {
-            if( 0 == $_FILES['uphoto']['error']) 
-            {
-                $info=$this->uploadUser();
-                $data['uphoto'] = $info['uphoto']['savename'];
-            }
-            else
-            {
-                $data['uphoto'] = 'default.jpg';
-            } 
-        }
-        
+        }       
         if( $user -> where($uid) -> save($data) )
         {
             $success['success'] = 1;
             $success['usex'] = $data['usex'];
             $success['ualiase'] = $data['ualiase'];
             $success['uspecialline'] = $data['uspecialline'];
-            $success['uphoto'] = $data['uphoto'];
             $this->ajaxReturn($success);
         }
         else
