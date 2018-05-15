@@ -425,7 +425,7 @@ class JsonController extends Controller {
     public function load_detail_state_0_firstcommentdata(){
         $tdid = I('request.tdid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,a.chit,b.uphoto')->select();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.ualiase,a.cid,a.content,a.ctime,a.chit,b.uphoto')->order('a.ctime DESC')->select();
         $this->ajaxReturn($data);
 
     }
@@ -477,7 +477,7 @@ class JsonController extends Controller {
     public function load_detail_state_0_commentagaindata(){
         $cid = I('request.cid');
         $commentagain = M('commentagain as a');
-        $data = $commentagain -> join('tec_user as b on b.uid = a.healer') -> where("a.cid = '$cid'") -> field('b.ualiase,a.cid,a.content,a.catime') -> select();
+        $data = $commentagain -> join('tec_user as b on b.uid = a.healer') -> where("a.cid = '$cid'") -> field('b.ualiase,a.cid,a.content,a.catime') -> order('a.catime ASC')-> select();
         $this->ajaxReturn($data);
     }
 
@@ -496,7 +496,7 @@ class JsonController extends Controller {
     public function load_detail_state_1_firstAnswerdata(){
         $tdid = I('request.tdid');
         $comment = M('comment as a');
-        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.uphoto,b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->select();
+        $data = $comment -> join('tec_user as b on b.uid = a.reviewer') -> where("a.tdid = '$tdid'") -> field('b.uphoto,b.ualiase,a.cid,a.content,a.ctime,b.ulevel,b.utype')->order('a.tdfirsttime DESC')->select();
         $this->ajaxReturn($data);
     }
 
@@ -606,7 +606,7 @@ class JsonController extends Controller {
     public function load_detail_state_1_commentAnswer(){
         $select['cid'] = I('request.cid');
         $commentagain = M('commentagain as a');
-        $data = $commentagain ->join('tec_user as b on b.uid = a.healer')->field('a.catime,a.content,a.cid,b.ualiase,b.uphoto') -> where($select) -> select();
+        $data = $commentagain ->join('tec_user as b on b.uid = a.healer')->field('a.catime,a.content,a.cid,b.ualiase,b.uphoto') -> where($select) -> order('a.catime DESC')-> select();
         $this->ajaxReturn($data);
     }
 
