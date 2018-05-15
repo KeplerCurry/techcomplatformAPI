@@ -62,6 +62,7 @@ class JsonController extends Controller {
             $data_return['uphoto'] = $data['uphoto'];
             $data_return['usex'] = $data['usex'];
             $data_return['uspecialline'] = $data['uspecialline'];
+            $data_return['utype'] = $data['utype'];
             if( NULL != $data['ulogintime'])
             {
                 $data_return['ulogintime'] = $data['ulogintime'];
