@@ -60,6 +60,8 @@ class JsonController extends Controller {
             $data_return['ulevel'] = $data['ulevel'];
             $data_return['uexp'] = $data['uexp'];
             $data_return['uphoto'] = $data['uphoto'];
+            $data_return['usex'] = $data['usex'];
+            $data_return['uspecialline'] = $data['uspecialline'];
             if( NULL != $data['ulogintime'])
             {
                 $data_return['ulogintime'] = $data['ulogintime'];
@@ -192,11 +194,22 @@ class JsonController extends Controller {
     }
 
 
-    //修改用户信息
+    //修改用户信息-完善个人信息
     public function editUserInfo(){
         $user = M('user');
         $uid['uid'] = I('request.uid');
-        $data['ualiase'] = I('request.ualiase');
+        if( NULL != I('request.ualiase'))
+        {
+            $data['ualiase'] = I('request.ualiase');
+        }
+        if( NULL != I('request.usex'))
+        {
+            $data['usex'] = I('request.usex');
+        }
+        if( NULL != I('request.uspecialline'))
+        {
+            $data['uspecialline'] = I('request.uspecialline');
+        }
         if ( 0 == $_FILES['uphoto']['error']) 
         {
             $info=$this->uploadUser();
@@ -209,6 +222,9 @@ class JsonController extends Controller {
         if( $user -> where($uid) -> save($data) )
         {
             $success['success'] = 1;
+            $success['usex'] = $data['usex'];
+            $success['ualiase'] = $data['ualiase'];
+            $success['uspecialline'] = $data['uspecialline'];
             $success['uphoto'] = $data['uphoto'];
             $this->ajaxReturn($success);
         }
