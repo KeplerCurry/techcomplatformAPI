@@ -1343,14 +1343,6 @@ class JsonController extends Controller {
         $search = M('search');
         $uid = I('request.uid');
         $searchtext = I('request.searchtext');
-        if( null != $uid ){
-            if( !$search -> where("uid = '$uid' and searchcontent = '$searchtext'") -> find())
-            {
-                $data['uid'] = $uid;
-                $data['searchcontent'] = $searchtext;
-                $search -> add($data);
-            }
-        }
         $state = I('request.state');
         switch ($state) {
             case 0:
@@ -1369,6 +1361,14 @@ class JsonController extends Controller {
                 $tpzdetail = M('tpzdetail as a');
                 $list = $tpzdetail -> join('tec_techpersonzone as b on b.tpzid = a.tpzid') ->where("a.tpzdtitle like '%$searchtext%' or a.tpzdcontent like '%$searchtext%'")-> field('a.tpzdtitle,a.tpzdid,b.tpzname')->select();
                 break;
+        }
+        if( null != $uid ){
+            if( !$search -> where("uid = '$uid' and searchcontent = '$searchtext'") -> find())
+            {
+                $data['uid'] = $uid;
+                $data['searchcontent'] = $searchtext;
+                $search -> add($data);
+            }
         }
         $this->ajaxReturn($list); 
     }
